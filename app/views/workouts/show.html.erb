@@ -1,0 +1,54 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @workout.name %>
+</p>
+
+<p>
+  <strong>Instructor:</strong>
+  <%= @workout.instructor %>
+</p>
+
+<p>
+  <strong>Date:</strong>
+  <%= @workout.date %>
+</p>
+
+<p>
+  <strong>Time:</strong>
+  <%= @workout.time %>
+</p>
+
+<p>
+  <strong>Location:</strong>
+  <%= @workout.location %>
+</p>
+
+<p>
+  <strong>Category:</strong>
+  <%= @workout.category %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @workout.price %>
+</p>
+
+<p>
+  <strong>Duration:</strong>
+  <%= @workout.duration %>
+</p>
+
+<p>
+  <strong>Level:</strong>
+  <%= @workout.level %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @workout.description %>
+</p>
+
+<%= link_to 'Edit', edit_workout_path(@workout) %> |
+<%= link_to 'Back', workouts_path %>
