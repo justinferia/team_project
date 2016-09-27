@@ -84,4 +84,16 @@ RSpec.feature "Workouts", type: :feature do
       end
     end #end of steps
   end # end of context
+
+  #testing for MVP
+  context 'I want to see a calendar' do
+    Steps 'Go to workout index' do
+      Given 'i am on the workouts index' do
+      visit '/workouts'
+      end
+      Then 'i want to see a calendar' do
+      find_by_id('calendar')
+      end
+    end
+  end #end of context
 end #end of RSpec
