@@ -5,7 +5,7 @@
 <table>
   <thead>
     <tr>
-      <th>Name</th>
+      <th>Class Name</th>
       <th>Instructor</th>
       <th>Date</th>
       <th>Time</th>
@@ -24,8 +24,8 @@
       <tr>
         <td><%= workout.name %></td>
         <td><%= workout.instructor %></td>
-        <td><%= workout.date %></td>
-        <td><%= workout.time %></td>
+        <td><%= workout.date.strftime("%m/%d/%y") %></td>
+        <td><%= workout.time.strftime("%I:%M %p") %></td>
         <td><%= workout.location %></td>
         <td><%= workout.category %></td>
         <td><%= workout.price %></td>
