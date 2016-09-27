@@ -43,14 +43,44 @@ RSpec.feature "Workouts", type: :feature do
       Then 'i am on the details page' do
         expect(page).to have_content 'Triathlon training'
         expect(page).to have_content 'John Fohnson'
-        expect(page).to have_content '2017-01-01'
-        expect(page).to have_content '00:01'
+        expect(page).to have_content '01/01/17'
+        expect(page).to have_content '12:01 AM'
         expect(page).to have_content '3803 Ray St'
         expect(page).to have_content 'crosstraining'
         expect(page).to have_content '5.0'
         expect(page).to have_content '1 hour'
         expect(page).to have_content '4'
         expect(page).to have_content 'Swimming, Biking, and Running Training'
+      end #en of then
+      Then 'I am on the show page' do
+        click_link('Edit')
+      end #end of then
+      And 'I want to edit some fields' do
+        fill_in('Location', :with => '247 Sesame St')
+        fill_in('Instructor', :with => 'Elmo')
+        fill_in('Category', :with => 'Jazzercise')
+        click_button('Update Workout')
+      end
+      Then 'I am on the show page again' do
+        expect(page).to have_content 'Triathlon training'
+        expect(page).to have_content 'Elmo'
+        expect(page).to have_content '01/01/17'
+        expect(page).to have_content '12:01 AM'
+        expect(page).to have_content '247 Sesame St'
+        expect(page).to have_content 'Jazzercise'
+        expect(page).to have_content '5.0'
+        expect(page).to have_content '1 hour'
+        expect(page).to have_content '4'
+        expect(page).to have_content 'Swimming, Biking, and Running Training'
+      end
+      Then 'i want to go back to the workouts index' do
+        click_link('Back')
+        expect(page).to have_content 'Workout Listings'
+        expect(page).to have_content 'Elmo'
+      end
+      Then 'i want to destroy elmo' do
+        click_link('Destroy')
+        expect(page).to_not have_content 'Elmo'
       end
     end #end of steps
   end # end of context
