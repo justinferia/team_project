@@ -4,7 +4,7 @@ development:
   encoding: unicode
   database: team_circle_project_development
   pool: 5
-  username:
+  username: sample_postgres
   password:
 
 test:
@@ -12,7 +12,7 @@ test:
   encoding: unicode
   database: team_circle_project_test
   pool: 5
-  username:
+  username: sample_postgres
   password:
 
 production:
