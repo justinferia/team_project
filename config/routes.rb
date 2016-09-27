@@ -1,8 +1,11 @@
 Rails.application.routes.draw do
 
   resources :instructors
+    #generates /concerts/get_events route
 
-  resources :workouts
+  resources :workouts do
+    get :get_workouts, on: :collection
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
