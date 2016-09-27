@@ -5,7 +5,7 @@ RSpec.feature "InstructorSignUpPage", type: :feature do
   context 'Going to the instructors page' do
     Steps 'Seeing the list of instructors' do
       Given 'I am on the instructor page' do
-        visit '/'
+        visit '/instructors'
       end
       Then 'I can create a new instructor' do
         click_link 'New Instructor'
