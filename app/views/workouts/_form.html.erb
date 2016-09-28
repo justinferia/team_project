@@ -12,7 +12,7 @@
   <% end %>
 
   <!--"class" added to name field to remove confusion with instructor name.   -->
-  <div class="field">Class
+  <div class="field"><strong>Class</strong>
     <%= f.label :name %><br>
     <%= f.text_field :name %>
   </div>
@@ -34,7 +34,7 @@
   </div>
   <div class="field">
     <%= f.label :category %><br>
-    <%= f.text_field :category %>
+    <%= f.select :category, [ 'Yoga','Swimming','Weight Training', 'Cross Fit', 'Cardio'], :prompt => 'Select One' %>
   </div>
   <div class="field">
     <%= f.label :price %><br>
