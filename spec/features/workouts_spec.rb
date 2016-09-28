@@ -73,15 +73,6 @@ RSpec.feature "Workouts", type: :feature do
         expect(page).to have_content '4'
         expect(page).to have_content 'Swimming, Biking, and Running Training'
       end
-      Then 'i want to go back to the workouts index' do
-        click_link('Back')
-        expect(page).to have_content 'Workout Listings'
-        expect(page).to have_content 'Elmo'
-      end
-      Then 'i want to destroy elmo' do
-        click_link('Destroy')
-        expect(page).to_not have_content 'Elmo'
-      end
     end #end of steps
   end # end of context
 
