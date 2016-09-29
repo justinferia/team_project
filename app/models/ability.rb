@@ -6,8 +6,9 @@ class Ability
     if user.nil?
       user = User.new
     end
+
     if user.has_role? :instructor
-      can :manage, Workout, user_id: user.id
+      can :manage, Workout
     else user.has_role? :guest
       can :read, Workout
     end

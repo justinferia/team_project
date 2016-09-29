@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
 
-  devise_for :users
-    #generates /concerts/get_events route
+
+  devise_for :users, :controllers => { registrations: 'registrations' }
+
 
   resources :workouts do
     get :get_workouts, on: :collection

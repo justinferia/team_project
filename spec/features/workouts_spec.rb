@@ -15,14 +15,30 @@ RSpec.feature "Workouts", type: :feature do
 
 
 #testing for will and justins second story. As a instructor, I can create a listing for an exercise session. The list listing should include name, istructor, date, time, location, category, price, duration, level, description, so that a user can make an informed desion about attending a class.
+
+# sea and will added in testing for instructors being able to create a class. I can sign up as an instructor and create a class.
   context 'adding a workout' do
-    Steps 'go to the workout index' do
+    Steps 'sign up as instuctor then add a workout' do
       Given 'on the workout index page' do
-        visit '/workouts'
-        click_link('New Workout')
+        visit '/'
+        click_link('Click here for class information')
       end # end of given
-      Then 'see a form where i can create a new workout' do
-        expect(page).to have_content 'New Workout'
+      Then 'i sign up to be an instructor' do
+        click_link('Sign Up')
+        fill_in('user_email',:with=>"test@test.com")
+        fill_in('user[password]',:with=>"password")
+        fill_in('user_password_confirmation',:with=>"password")
+        select('Instructor',:from => "role[role_name]")
+        click_button('Sign up')
+      end
+      Then 'expect to see i have signed up successfully' do
+        expect(page).to have_content 'Welcome! You have signed up successfully'
+      end
+      Then 'i can click a link to go to the workouts listing' do
+        click_link 'Click here for class information'
+      end
+      Then 'i can click a link to go to a form to make a new workout' do
+        click_link 'New Workout'
       end
       Then 'i can fill out a form' do
         fill_in('Name', :with => 'Triathlon training')
@@ -52,31 +68,8 @@ RSpec.feature "Workouts", type: :feature do
         expect(page).to have_content '4'
         expect(page).to have_content 'Swimming, Biking, and Running Training'
       end #en of then
-      Then 'I am on the show page' do
-        click_link('Edit')
-      end #end of then
-      And 'I want to edit some fields' do
-        fill_in('Location', :with => '247 Sesame St')
-        fill_in('Instructor', :with => 'Elmo')
-        select('Cardio', :from => 'Category')
-        click_button('Update Workout')
-      end
-      Then 'I am on the show page again' do
-        expect(page).to have_content 'Triathlon training'
-        expect(page).to have_content 'Elmo'
-        expect(page).to have_content '01/01/17'
-        expect(page).to have_content '12:01 AM'
-        expect(page).to have_content '247 Sesame St'
-        expect(page).to have_content 'Cardio'
-        expect(page).to have_content '5.0'
-        expect(page).to have_content '1 hour'
-        expect(page).to have_content '4'
-        expect(page).to have_content 'Swimming, Biking, and Running Training'
-      end
-    end #end of steps
-  end # end of context
-
-  #testing for MVP
+    end
+  end
   context 'I want to see a calendar' do
     Steps 'Go to workout index' do
       Given 'i am on the workouts index' do

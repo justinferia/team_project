@@ -24,8 +24,8 @@
   </div>
 
   <div class="field">
-    <%= f.label :role %><br />
-    <%=  select(:role, :users_roles, [["Guest","guest"],["Instructor","instructor"]]) %>
+    <%= f.label :role %><br/>
+    <%=  select(:role,:role_name, [["Guest",'guest'],["Instructor",'instructor']]) %>
   </div>
 
   <div class="actions">

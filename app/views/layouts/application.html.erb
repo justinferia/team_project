@@ -37,7 +37,9 @@
           </ul>
         </div>
       </nav>
-      Current User:
+      Current User: <% if !current_user.nil? %>
+        <%= current_user.email + ' (' + current_user.roles.pluck(:name).join(",") + ')'%>
+      <%end%>
       <p class="notice"><%= notice %></p>
       <p class="alert"><%= alert %></p>
       <%= yield %>

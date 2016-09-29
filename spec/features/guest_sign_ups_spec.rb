@@ -1,6 +1,6 @@
 require 'rails_helper'
-
-RSpec.feature "GuestSignUps", type: :feature do
+# 
+RSpec.feature "UserSignUps", type: :feature do
   context 'Going to website' do
     Steps 'being welcomed' do
       Given 'i am on landing page' do
@@ -14,7 +14,7 @@ RSpec.feature "GuestSignUps", type: :feature do
         fill_in('user_email',:with=>"test@test.com")
         fill_in('user[password]',:with=>"password")
         fill_in('user_password_confirmation',:with=>"password")
-        select('Instructor',:from => "role_users_roles")
+        select('Instructor',:from => "role[role_name]")
         click_button('Sign up')
       end
       Then 'i can be acknowleged that i signed up' do
