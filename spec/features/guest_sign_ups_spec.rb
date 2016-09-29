@@ -11,9 +11,10 @@ RSpec.feature "GuestSignUps", type: :feature do
         expect(page).to have_content("Password confirmation")
       end
       Then 'i can fill out sign up page' do
-        fill_in('guest_email',:with=>"test@test.com")
-        fill_in('guest[password]',:with=>"password")
-        fill_in('guest_password_confirmation',:with=>"password")
+        fill_in('user_email',:with=>"test@test.com")
+        fill_in('user[password]',:with=>"password")
+        fill_in('user_password_confirmation',:with=>"password")
+        select('Instructor',:from => "role_users_roles")
         click_button('Sign up')
       end
       Then 'i can be acknowleged that i signed up' do
@@ -25,8 +26,8 @@ RSpec.feature "GuestSignUps", type: :feature do
       end
       Then "i can sign back in with same login" do
         click_link("Sign In")
-        fill_in('guest_email',:with=>"test@test.com")
-        fill_in('guest_password',:with=>"password")
+        fill_in('user_email',:with=>"test@test.com")
+        fill_in('user_password',:with=>"password")
         click_button('Log in')
         expect(page).to have_content("Signed in successfully")
       end

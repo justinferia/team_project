@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  devise_for :guests
+  devise_for :users
     #generates /concerts/get_events route
 
   resources :workouts do

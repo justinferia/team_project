@@ -27,16 +27,17 @@
           </div>
           <ul class="nav navbar-nav">
             <li class="active"><a href="/">Home</a></li>
-            <%if !current_guest.nil?%>
-              <li><%= link_to "Sign Out", destroy_guest_session_path, :method => :delete %></li>
+            <%if !current_user.nil?%>
+              <li><%= link_to "Sign Out", destroy_user_session_path, :method => :delete %></li>
             <%end%>
-            <% if current_guest.nil?%>
-              <li><a href="/guests/sign_up">Sign Up</a></li>
-              <li><a href="/guests/sign_in">Sign In</a></li>
+            <% if current_user.nil?%>
+              <li><a href="/users/sign_up">Sign Up</a></li>
+              <li><a href="/users/sign_in">Sign In</a></li>
             <%end%>
           </ul>
         </div>
       </nav>
+      Current User:
       <p class="notice"><%= notice %></p>
       <p class="alert"><%= alert %></p>
       <%= yield %>
