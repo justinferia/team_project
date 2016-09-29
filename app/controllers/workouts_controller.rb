@@ -1,6 +1,6 @@
 class WorkoutsController < ApplicationController
   before_action :set_workout, only: [:show, :edit, :update, :destroy]
-
+  before_action :authenticate_user!, except: [:index, :show, :get_workouts]
   # GET /workouts
   # GET /workouts.json
   def index
@@ -14,7 +14,12 @@ class WorkoutsController < ApplicationController
 
   # GET /workouts/new
   def new
+    if !current_user.has_role? :instructor
+      flash[:alert] = 'You must be an instructor to create a workout'
+      redirect_to '/workouts/'
+    else
     @workout = Workout.new
+    end
   end
 
   # GET /workouts/1/edit

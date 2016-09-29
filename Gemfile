@@ -20,6 +20,9 @@ gem 'jquery-rails'
 gem 'turbolinks'
 
 gem 'paperclip'
+
+gem 'cancancan'
+gem 'rolify'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'fullcalendar-rails'
 gem 'momentjs-rails'
