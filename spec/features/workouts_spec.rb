@@ -117,7 +117,6 @@ RSpec.feature "Workouts", type: :feature do
         visit '/workouts'
       end
       Then "I can see a calendar with events that lead to the modal and a pop up" do
-        save_and_open_page
         find_by_id('calendar')
       end #end of then
     end #end of steps
