@@ -132,64 +132,16 @@ RSpec.feature "Workouts", type: :feature do
       Then 'I can go to a page to see a list of workouts' do
         click_link('Click here for class information')
       end
+      Then "I can see a calendar with events that lead to the modal and a pop up" do
+        find_by_id('calendar')
+      end #end of then
       Then 'I see a list of workouts and cannot create one' do
         expect(page).to_not have_content 'New Workout'
       end
       Then 'If I try to go to the create page through the url I am rejected' do
         visit '/workouts/new'
         expect(page).to have_content 'You must be an instructor to create a workout'
-      end
-    end
-  end
-
-  # context 'going to see working modal' do
-  #   Steps 'being welcomed' do
-  #     Given 'on the workout index page' do
-  #       visit '/'
-  #       click_link('Sign Up')
-  #     end # end of given
-  #     Then 'i can sign up as a user' do
-  #       click_link('Sign Up')
-  #       fill_in('user_email',:with=>"test@test.com")
-  #       fill_in('user[password]',:with=>"password")
-  #       fill_in('user_password_confirmation',:with=>"password")
-  #       select('Instructor',:from => "role[role_name]")
-  #       click_button('Sign up')
-  #     end
-  #     Then 'i can click a link to bring me to the workout page' do
-  #       click_link('Click here for class information')
-  #       expect(page).to have_content 'Workout Listings'
-  #     end
-  #     Then 'I can create a workout' do
-  #       click_link('New Workout')
-  #       fill_in('Name', :with => 'Triathlon training')
-  #       fill_in('Instructor', :with => 'John Fohnson')
-  #       select('2017', :from => 'workout[date(1i)]')
-  #       select('January', :from => 'workout[date(2i)]')
-  #       select('1', :from => 'workout[date(3i)]')
-  #       select('00', :from => 'workout[time(4i)]')
-  #       select('01', :from => 'workout[time(5i)]')
-  #       fill_in('Location', :with => '3803 Ray St')
-  #       select('Yoga', :from => 'Category')
-  #       fill_in('Price', :with => '5.00')
-  #       fill_in('Duration', :with => '1 hour')
-  #       fill_in('Level', :with => '4')
-  #       fill_in('Description', :with => 'Swimming, Biking, and Running Training')
-  #       click_button('Create Workout')
-  #       expect(page).to have_content 'Triathlon training'
-  #     end
-  #   end #end of steps
-  # end # end of context
-  #
-  # context 'going to see working modal' do
-  #   Steps 'being welcomed' do
-  #     Given 'on the workout index page' do
-  #       visit '/workouts'
-  #     end
-  #     Then "I can see a calendar with events that lead to the modal and a pop up" do
-  #       find_by_id('calendar')
-  #     end #end of then
-  #   end #end of steps
-  # end #end of context
-
+      end#end then
+    end#end of Steps
+  end#end of context
 end #end of RSpec
