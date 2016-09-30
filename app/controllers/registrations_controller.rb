@@ -8,10 +8,10 @@ class RegistrationsController < Devise::RegistrationsController
   end
 
   def after_sign_up_path_for(resource)
-    if params[:role][:role_name] == 'instructor'
-      '/users/edit' # Or :prefix_to_your_route
+    if  params[:role][:role_name] == 'instructor'
+      '/users/edit'
     else
-      '/workouts'
+      '/workouts' # Or :prefix_to_your_route
     end
   end
 
@@ -22,6 +22,6 @@ class RegistrationsController < Devise::RegistrationsController
   end
 
   def account_update_params
-    params.require(:user).permit(:email, :password, :password_confirmation, :current_password, :role)
+    params.require(:user).permit(:email, :password, :password_confirmation, :current_password, :role, :first_name, :last_name, :interests, :fitness_background)
   end
 end
