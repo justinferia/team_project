@@ -13,34 +13,74 @@ RSpec.feature "Workouts", type: :feature do
     end #end of steps
   end # end of context
 
+  context 'I want to see a calendar' do
+    Steps 'Go to workout index' do
+      Given 'i am on the workouts index' do
+      visit '/workouts'
+      end
+      Then 'i want to see a calendar' do
+      find_by_id('calendar')
+      end
+    end
+  end #end of context
 
-#testing for will and justins second story. As a instructor, I can create a listing for an exercise session. The list listing should include name, istructor, date, time, location, category, price, duration, level, description, so that a user can make an informed desion about attending a class.
-
-# sea and will added in testing for instructors being able to create a class. I can sign up as an instructor and create a class.
-  context 'adding a workout' do
-    Steps 'sign up as instuctor then add a workout' do
-      Given 'on the workout index page' do
+  context 'I can sign up, sign in, and delete my acc' do
+    Steps 'Sign up, Sign out, Sign in, Destroy acc' do
+      Given 'I can go to the home page' do
         visit '/'
-        click_link('Click here for class information')
-      end # end of given
-      Then 'i sign up to be an instructor' do
+      end
+      Then 'I can sign up' do
         click_link('Sign Up')
         fill_in('user_email',:with=>"test@test.com")
         fill_in('user[password]',:with=>"password")
         fill_in('user_password_confirmation',:with=>"password")
         select('Instructor',:from => "role[role_name]")
         click_button('Sign up')
-      end
-      Then 'expect to see i have signed up successfully' do
         expect(page).to have_content 'Welcome! You have signed up successfully'
       end
-      Then 'i can click a link to go to the workouts listing' do
+      Then 'I can sign out' do
+        click_link('Sign Out')
+        expect(page).to have_content 'Signed out successfully'
+      end
+      Then 'I can sign in using the acc I previously made' do
+        click_link('Sign In')
+        fill_in('user_email',:with=>"test@test.com")
+        fill_in('user[password]',:with=>"password")
+        click_button('Log in')
+        expect(page).to have_content 'Signed in successfully'
+      end
+      Then 'I can delete my acc' do
+        visit '/users/edit'
+        click_button('Cancel my account')
+        expect(page).to have_content 'Bye! Your account has been successfully cancelled. We hope to see you again soon.'
+      end
+    end
+  end
+
+#testing for will and justins second story. As a instructor, I can create a listing for an exercise session. The list listing should include name, istructor, date, time, location, category, price, duration, level, description, so that a user can make an informed desion about attending a class.
+
+# sea and will added in testing for instructors being able to create a class. I can sign up as an instructor and create a class.
+  context 'Signing up as an instructor to add a workout' do
+    Steps 'Sign up as instuctor then add a workout' do
+      Given 'on the workout index page' do
+        visit '/'
+      end # end of given
+      Then 'I sign up to be an instructor' do
+        click_link('Sign Up')
+        fill_in('user_email',:with=>"test@test.com")
+        fill_in('user[password]',:with=>"password")
+        fill_in('user_password_confirmation',:with=>"password")
+        select('Instructor',:from => "role[role_name]")
+        click_button('Sign up')
+        expect(page).to have_content 'Welcome! You have signed up successfully'
+      end
+      Then 'I can click a link to go to the workouts listing' do
         click_link 'Click here for class information'
       end
-      Then 'i can click a link to go to a form to make a new workout' do
-        click_link 'New Workout'
+      Then 'I can click a link to go to a form to make a new workout' do
+        click_link('New Workout')
       end
-      Then 'i can fill out a form' do
+      Then 'I can fill out a form' do
         fill_in('Name', :with => 'Triathlon training')
         fill_in('Instructor', :with => 'John Fohnson')
         select('2017', :from => 'workout[date(1i)]')
@@ -56,7 +96,7 @@ RSpec.feature "Workouts", type: :feature do
         fill_in('Description', :with => 'Swimming, Biking, and Running Training')
         click_button('Create Workout')
       end
-      Then 'i am on the details page' do
+      Then 'I am on the details page' do
         expect(page).to have_content 'Triathlon training'
         expect(page).to have_content 'John Fohnson'
         expect(page).to have_content '01/01/17'
@@ -70,56 +110,38 @@ RSpec.feature "Workouts", type: :feature do
       end #en of then
     end
   end
-  context 'I want to see a calendar' do
-    Steps 'Go to workout index' do
-      Given 'i am on the workouts index' do
-      visit '/workouts'
-      end
-      Then 'i want to see a calendar' do
-      find_by_id('calendar')
-      end
-    end
-  end #end of context
 
-
-  context 'going to see working modal' do
-    Steps 'being welcomed' do
-      Given 'on the workout index page' do
-        visit '/workouts'
-      end # end of given
-      Then 'I can see a list of workouts' do
-        expect(page).to have_content 'Workout Listings'
+  context 'Sign up as a guest and not be able to add a workout' do
+    Steps 'Sign up as guest and fail to add a workout' do
+      Given 'I am on the home page' do
+        visit '/'
       end
-      Then 'I can create a workout' do
-        click_link('New Workout')
-        fill_in('Name', :with => 'Triathlon training')
-        fill_in('Instructor', :with => 'John Fohnson')
-        select('2017', :from => 'workout[date(1i)]')
-        select('January', :from => 'workout[date(2i)]')
-        select('1', :from => 'workout[date(3i)]')
-        select('00', :from => 'workout[time(4i)]')
-        select('01', :from => 'workout[time(5i)]')
-        fill_in('Location', :with => '3803 Ray St')
-        select('Yoga', :from => 'Category')
-        fill_in('Price', :with => '5.00')
-        fill_in('Duration', :with => '1 hour')
-        fill_in('Level', :with => '4')
-        fill_in('Description', :with => 'Swimming, Biking, and Running Training')
-        click_button('Create Workout')
-        expect(page).to have_content 'Triathlon training'
+      Then 'I can click a link to sign up' do
+        click_link('Sign Up')
       end
-    end #end of steps
-  end # end of context
-
-  context 'going to see working modal' do
-    Steps 'being welcomed' do
-      Given 'on the workout index page' do
-        visit '/workouts'
+      Then 'I can fill out a form with my information' do
+        fill_in('user_email',:with=>"remy@pickles.com")
+        fill_in('user[password]',:with=>"password")
+        fill_in('user_password_confirmation',:with=>"password")
+        select('Guest',:from => "role[role_name]")
+        click_button('Sign up')
+      end
+      Then 'I receive confirmation that my account was created successfully' do
+        expect(page).to have_content 'Welcome! You have signed up successfully'
+      end
+      Then 'I can go to a page to see a list of workouts' do
+        click_link('Click here for class information')
       end
       Then "I can see a calendar with events that lead to the modal and a pop up" do
         find_by_id('calendar')
       end #end of then
-    end #end of steps
-  end #end of context
-
+      Then 'I see a list of workouts and cannot create one' do
+        expect(page).to_not have_content 'New Workout'
+      end
+      Then 'If I try to go to the create page through the url I am rejected' do
+        visit '/workouts/new'
+        expect(page).to have_content 'You must be an instructor to create a workout'
+      end#end then
+    end#end of Steps
+  end#end of context
 end #end of RSpec
