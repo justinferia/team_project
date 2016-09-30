@@ -17,6 +17,7 @@ RSpec.feature "UserSignUps", type: :feature do
         select('Instructor',:from => "role[role_name]")
         click_button('Sign up')
       end
+
       Then 'i can be acknowleged that i signed up' do
         expect(page).to have_content("You have signed up successfully")
       end
@@ -51,7 +52,12 @@ RSpec.feature "UserSignUps", type: :feature do
         click_button('Sign up')
       end
       Then 'i am redirected to the edit page' do
-        expect(page).to have_content("Edit")
+        fill_in('user[current_password]',:with=>"password")
+        fill_in('user_interests',:with=>"I love reading and working out")
+        fill_in('user_fitness_background',:with=>"certified with NASM and played")
+        click_button('Update')
+      end
+      Then 'I am on the home page' do
       end
     end
   end

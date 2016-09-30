@@ -74,10 +74,8 @@ RSpec.feature "Workouts", type: :feature do
         click_button('Sign up')
         expect(page).to have_content 'Welcome! You have signed up successfully'
       end
-      Then 'I can click a link to go to the workouts listing' do
-        click_link 'Click here for class information'
-      end
-      Then 'I can click a link to go to a form to make a new workout' do
+      Then 'I can go to the workouts page and click a link to go to a form to make a new workout' do
+        visit '/workouts'
         click_link('New Workout')
       end
       Then 'I can fill out a form' do
@@ -128,9 +126,6 @@ RSpec.feature "Workouts", type: :feature do
       end
       Then 'I receive confirmation that my account was created successfully' do
         expect(page).to have_content 'Welcome! You have signed up successfully'
-      end
-      Then 'I can go to a page to see a list of workouts' do
-        click_link('Click here for class information')
       end
       Then "I can see a calendar with events that lead to the modal and a pop up" do
         find_by_id('calendar')
