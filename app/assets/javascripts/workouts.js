@@ -18,7 +18,7 @@ $(document).ready(function() {
          $('#description').html(event.description);
          $('#location').html(event.location);
          $('#date').html(event.date);
-         $('#time').html(event.start);
+         $('#time').html(event.time);
          $('#category').html(event.category);
          $('#price').html(event.price);
          $('#duration').html(event.duration);
