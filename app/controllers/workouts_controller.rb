@@ -70,7 +70,7 @@ class WorkoutsController < ApplicationController
     @workouts = Workout.all
     workouts = []
     @workouts.each do |workout|
-      workouts << { id: workout.id, title: workout.name, start:DateTime.new(workout.date.year, workout.date.month, workout.date.day, workout.time.hour, workout.time.min, workout.time.sec).to_s, instructor:  workout.instructor, description:workout.description, location: workout.location, date:workout.date, category: workout.category, price: workout.price, duration: workout.duration, level:workout.level
+      workouts << { id: workout.id, title: workout.name, start:DateTime.new(workout.date.year, workout.date.month, workout.date.day, workout.time.hour, workout.time.min, workout.time.sec).to_s, instructor:  workout.instructor, description:workout.description, location: workout.location, date:workout.date, category: workout.category, price: workout.price, duration: workout.duration, level:workout.level, time:workout.time.strftime('%r')
       }
     end
     render :json => workouts.to_json
