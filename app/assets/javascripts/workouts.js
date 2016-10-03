@@ -15,6 +15,7 @@ $(document).ready(function() {
      eventClick:  function(event, jsEvent, view) {
          $('#modalTitle').html(event.title);
          $('#instructor').html(event.instructor);
+         $('#image').html(event.image);
          $('#description').html(event.description);
          $('#location').html(event.location);
          $('#date').html(event.date);

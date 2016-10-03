@@ -16,10 +16,13 @@
     <%= f.label :name %><br>
     <%= f.text_field :name %>
   </div>
-  <div class="field">
-    <%= f.label :instructor %><br>
-    <%= f.text_field :instructor %>
+  <div class="field hidden">
+    <%= f.hidden_field :user_id, value: current_user.id %>
   </div>
+  <div class="field hidden">
+    <%= f.hidden_field :user_id, value: current_user.id %>
+  </div>
+
   <div class="field">
     <%= f.label :date %><br>
     <%= f.date_select :date %>

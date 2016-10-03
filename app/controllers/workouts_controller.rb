@@ -70,7 +70,10 @@ class WorkoutsController < ApplicationController
     @workouts = Workout.all
     workouts = []
     @workouts.each do |workout|
-      workouts << { id: workout.id, title: workout.name, start:DateTime.new(workout.date.year, workout.date.month, workout.date.day, workout.time.hour, workout.time.min, workout.time.sec).to_s, instructor:  workout.instructor, description:workout.description, location: workout.location, date:workout.date, category: workout.category, price: workout.price, duration: workout.duration, level:workout.level, time:workout.time.strftime('%r')
+      # value ? a : b means if value is true, do a.  If value is false, do b. (inline if statement)
+      user = workout.user.present? ? workout.user.name : nil
+      image = workout.user.present? ? workout.user.image.url : nil
+      workouts << { id: workout.id, title: workout.name, start:DateTime.new(workout.date.year, workout.date.month, workout.date.day, workout.time.hour, workout.time.min, workout.time.sec).to_s, instructor:  user, description:workout.description, location: workout.location, date:workout.date, category: workout.category, price: workout.price, duration: workout.duration, level:workout.level, time:workout.time.strftime('%r'), image: image
       }
     end
     render :json => workouts.to_json
@@ -84,6 +87,6 @@ class WorkoutsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def workout_params
-      params.require(:workout).permit(:name, :instructor, :date, :time, :location, :category, :price, :duration, :level, :description)
+      params.require(:workout).permit(:name, :user_id, :date, :time, :location, :category, :price, :duration, :level, :description)
     end
 end
