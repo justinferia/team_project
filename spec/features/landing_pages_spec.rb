@@ -8,6 +8,12 @@ RSpec.feature "LandingPages", type: :feature do
       end
       Then 'i can see a welcome message' do
         expect(page).to have_content("Welcome")
+        expect(page).to have_content("Please sign in as Instructor to host an event")
+      end
+      Then 'i can sign up and see hello [myname]' do
+        click_link 'Sign Up'
+        sign_up("test@test.com", "password", "Alex", "Yong")
+        expect(page).to have_content("Hello, Alex Yong ( guest )")
       end
     end
   end

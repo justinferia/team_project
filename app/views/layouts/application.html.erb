@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>teamcircleproject</title>
+    <title>Winner's Circle</title>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
     <%= csrf_meta_tags %>
@@ -28,7 +28,7 @@
       <nav class="navbar navbar-inverse">
         <div class="container-fluid">
           <div class="navbar-header">
-            <a class="navbar-brand" href="#">WebSiteName</a>
+            <a class="navbar-brand" href="/">Winner's Circle</a>
           </div>
           <ul class="nav navbar-nav">
             <li class="active"><a href="/">Home</a></li>
@@ -40,20 +40,22 @@
               <li><a href="/users/sign_in">Sign In</a></li>
             <%end%>
           </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <%if !current_user.nil?%>
+            <li id="nav-icon">
+              <%if !current_user.image_file_name.nil?%>
+              <%= link_to_if 1==2, image_tag(current_user.image.url), current_user.image.url%>
+              <%end%>
+            </li>
+            <li><a href="/users/edit">
+              Hello, <%= "#{current_user.name} ( #{current_user.roles.pluck(:name).join(", ") } )" %>
+              </a>
+            </li>
+            <%end%>
+          </ul>
         </div>
       </nav>
-      <% if !current_user.nil? %>
 
-        <div class="row">
-          <div class="col-xs-2 col-sm-1">
-            <%= image_tag current_user.image.url, class: "img-responsive img-circle" %>
-          </div>
-          <div class="col-xs-10">
-            Current User:
-            <%= "#{current_user.name} ( #{current_user.roles.pluck(:name).join(", ") } )" %>
-          </div>
-        </div>
-      <%end%>
       <p class="notice"><%= notice %></p>
       <p class="alert"><%= alert %></p>
       <%= yield %>
