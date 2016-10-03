@@ -24,6 +24,7 @@ $(document).ready(function() {
          $('#price').html(event.price);
          $('#duration').html(event.duration);
          $('#level').html(event.level);
+         $('#image').attr("src", event.image);
          $('#eventUrl').attr('href',event.url);
          $('#fullCalModal').modal();
          return false;
