@@ -42,8 +42,17 @@
           </ul>
         </div>
       </nav>
-      Current User: <% if !current_user.nil? %>
-        <%= current_user.first_name + ' (' + current_user.roles.pluck(:name).join(",") + ')'%>
+      <% if !current_user.nil? %>
+
+        <div class="row">
+          <div class="col-xs-2 col-sm-1">
+            <%= image_tag current_user.image.url, class: "img-responsive img-circle" %>
+          </div>
+          <div class="col-xs-10">
+            Current User:
+            <%= "#{current_user.name} ( #{current_user.roles.pluck(:name).join(", ") } )" %>
+          </div>
+        </div>
       <%end%>
       <p class="notice"><%= notice %></p>
       <p class="alert"><%= alert %></p>
