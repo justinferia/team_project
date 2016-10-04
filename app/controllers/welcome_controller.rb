@@ -1,6 +1,6 @@
 class WelcomeController < ApplicationController
   def index
-    @workouts = Workout.all #@apartments may also be found using the set_apartment method provided by scaffolding
+    @workouts = Workout.all
     @pindrop = Gmaps4rails.build_markers(@workouts) do |workout, marker|
       marker.lat workout.latitude
       marker.lng workout.longitude
