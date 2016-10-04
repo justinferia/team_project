@@ -20,7 +20,7 @@ gem 'jquery-rails'
 gem 'turbolinks'
 
 gem "paperclip", "~> 5.0.0"
-
+gem 'textacular', '~> 3.0'
 gem 'cancancan'
 gem 'rolify'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
