@@ -2,7 +2,16 @@
   padding-left: 5px;
 }
 
+.center_button {
+  margin: auto;
+  text-align: center;
+}
+
 #new {
   float: right;
   overflow: auto;
+}
+
+#image{
+  height: 250px;
 }
