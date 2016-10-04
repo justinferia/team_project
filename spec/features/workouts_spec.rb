@@ -80,7 +80,6 @@ RSpec.feature "Workouts", type: :feature do
       end
       Then 'I can fill out a form' do
         fill_in('Name', :with => 'Triathlon training')
-        fill_in('Instructor', :with => 'John Fohnson')
         select('2017', :from => 'workout[date(1i)]')
         select('January', :from => 'workout[date(2i)]')
         select('1', :from => 'workout[date(3i)]')
@@ -90,25 +89,24 @@ RSpec.feature "Workouts", type: :feature do
         select('Yoga', :from => 'Category')
         fill_in('Price', :with => '5.00')
         fill_in('Duration', :with => '1 hour')
-        fill_in('Level', :with => '4')
+        select('Beginner', :from => 'Level')
         fill_in('Description', :with => 'Swimming, Biking, and Running Training')
         click_button('Create Workout')
       end
       Then 'I am on the details page' do
         expect(page).to have_content 'Triathlon training'
-        expect(page).to have_content 'John Fohnson'
         expect(page).to have_content '01/01/17'
         expect(page).to have_content '12:01 AM'
         expect(page).to have_content '3803 Ray St'
         expect(page).to have_content 'Yoga'
         expect(page).to have_content '5.0'
         expect(page).to have_content '1 hour'
-        expect(page).to have_content '4'
+        expect(page).to have_content 'Beginner'
         expect(page).to have_content 'Swimming, Biking, and Running Training'
-      end #en of then
+      end #end of then
     end
   end
-
+ #testing for a guest when they sign up
   context 'Sign up as a guest and not be able to add a workout' do
     Steps 'Sign up as guest and fail to add a workout' do
       Given 'I am on the home page' do

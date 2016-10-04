@@ -1,10 +1,26 @@
 class WorkoutsController < ApplicationController
   before_action :set_workout, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, except: [:index, :show, :get_workouts]
+  before_action :authenticate_user!, except: [:index, :show, :get_workouts, :search]
   # GET /workouts
   # GET /workouts.json
   def index
     @workouts = Workout.all
+  end
+
+  def search
+      if (params[:search1].nil? || params[:search1].strip.empty?) && (params[:search2].nil? || params[:search2].strip.empty?)
+        @workouts = Workout.all
+      elsif
+      params[:search2].nil? || params[:search2].strip.empty?
+        @workouts = Workout.search(params[:search1])
+      elsif
+      params[:search1].nil? || params[:search1].strip.empty?
+        @workouts = Workout.search(params[:search2])
+      else
+        @workouts = Workout.search(params[:search1])
+        @workouts = @workouts.search(params[:search2])
+      end
+      render :index
   end
 
   # GET /workouts/1

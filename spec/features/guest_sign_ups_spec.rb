@@ -97,7 +97,7 @@ RSpec.feature "UserSignUps", type: :feature do
     end #end of steps
   end #end of context
   # Sea-Anna and Alex making tests for updating user information for a Guest
-  context 'Updating User information'
+  context 'Updating User information' do
     Steps 'Updating first name as a guest' do
         Given 'I am on the edit User page as a guest' do
           visit '/'
@@ -122,7 +122,7 @@ RSpec.feature "UserSignUps", type: :feature do
         Then 'i am in the workouts page with my name being Sea' do
           expect(page).to have_content("Sea")
           expect(page).to have_content("Workout")
-        end
-    end
-
-end # end og RSPEC
+        end #end then
+    end #end of steps
+  end #end of context
+end #end of RSPEC
