@@ -1,3 +1,8 @@
 .modal_style{
   padding-left: 5px;
 }
+
+#new {
+  float: right;
+  overflow: auto;
+}

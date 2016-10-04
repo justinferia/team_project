@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   devise_for :users, :controllers => { registrations: 'registrations' }
 
+  get '/workouts/search'
 
   resources :workouts do
     get :get_workouts, on: :collection

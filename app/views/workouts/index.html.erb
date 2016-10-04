@@ -1,11 +1,20 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Workout Listings</h1>
-
-
-<br>
 <div class="container">
-  <div id="calendar"></div>
+
+     <h1>Workout Listings</h1>
+
+   <div id="new">
+    <%if !current_user.nil?%>
+      <% if current_user.has_role? :instructor %>
+        <%= link_to 'New Workout', new_workout_path %>
+      <% end %>
+    <% end %>
+   </div>
+
+  <br>
+  <br>
+<div id="calendar"></div>
 
 <div id="fullCalModal" class="modal fade">
     <div class="modal-dialog">
@@ -32,8 +41,31 @@
     </div>
 </div>
 </div>
-<%if !current_user.nil?%>
-  <% if current_user.has_role? :instructor %>
-    <%= link_to 'New Workout', new_workout_path %>
-  <% end %>
-<% end %>
+
+<br>
+<form class="navbar-form navbar-left" action='/workouts/search' method='get' role="search">
+  <div class="form-group">
+    <select class="form-control" name="search1">
+      <option value="">Select Category</option>        <option value="cardio">Cardio</option>
+      <option value="strength Training">Strength Training</option>
+      <option value="yoga">Yoga</option>
+    </select>
+    <select class="form-control" name="search2">
+      <option value="">Select Level</option>
+      <option value="beginner">Beginner</option>
+      <option value="intermediate">Intermediate</option>
+      <option value="advanced">Advanced</option>
+    </select>
+  </div>
+    <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
+</form>
+<br>
+
+<div class="col-md-12 col-sm-12">
+  <label> Search Results: </label>
+<% @workouts.each do |workout| %>
+ <ul>
+   <li><%= workout.name %></li>
+ </ul>
+  <%end%>
+</div>

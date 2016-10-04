@@ -45,7 +45,7 @@
   </div>
   <div class="field">
     <%= f.label :level %><br>
-    <%= f.number_field :level %>
+    <%= f.select :level, [ 'Beginner','Intermediate','Advanced'], :prompt => 'Select One' %>
   </div>
   <div class="field">
     <%= f.label :description %><br>
