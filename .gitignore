@@ -60,3 +60,4 @@ config/database.yml
 
 # Ignore the schema between environments
 db/schema.rb
+.DS_Store
