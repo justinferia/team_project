@@ -40,7 +40,8 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw]
 # Awesome Print to make  the console easier to read.  (See github)
 gem "awesome_print", require:"ap"
 
-
+gem 'geocoder'
+gem 'gmaps4rails'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

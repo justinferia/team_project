@@ -89,7 +89,7 @@ RSpec.feature "Workouts", type: :feature do
         select('Yoga', :from => 'Category')
         fill_in('Price', :with => '5.00')
         fill_in('Duration', :with => '1 hour')
-        fill_in('Level', :with => '4')
+        select('Beginner', :from => 'Level')
         fill_in('Description', :with => 'Swimming, Biking, and Running Training')
         click_button('Create Workout')
       end
@@ -101,7 +101,7 @@ RSpec.feature "Workouts", type: :feature do
         expect(page).to have_content 'Yoga'
         expect(page).to have_content '5.0'
         expect(page).to have_content '1 hour'
-        expect(page).to have_content '4'
+        expect(page).to have_content 'Beginner'
         expect(page).to have_content 'Swimming, Biking, and Running Training'
       end #end of then
     end

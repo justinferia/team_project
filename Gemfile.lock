@@ -90,8 +90,10 @@ GEM
       jquery-rails (>= 4.0.5, < 5.0.0)
       jquery-ui-rails (>= 5.0.2)
       momentjs-rails (>= 2.9.0)
+    geocoder (1.4.0)
     globalid (0.3.7)
       activesupport (>= 4.1.0)
+    gmaps4rails (2.1.2)
     i18n (0.7.0)
     jbuilder (2.6.0)
       activesupport (>= 3.0.0, < 5.1)
@@ -249,6 +251,8 @@ DEPENDENCIES
   coffee-rails (~> 4.1.0)
   devise (~> 4.2)
   fullcalendar-rails
+  geocoder
+  gmaps4rails
   jbuilder (~> 2.0)
   jquery-rails
   launchy

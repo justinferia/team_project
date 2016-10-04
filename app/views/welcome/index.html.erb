@@ -8,6 +8,21 @@
     <body>
       <div class="row">
         <div class="col-xs-6 text-center">
+          <div id="map">Google map will appear here...</div>
+          <script type="text/javascript">
+          handler = Gmaps.build('Google');
+          handler.buildMap({
+            provider: {},
+            internal: {id: 'map'}
+          },
+          function() {
+            markers = handler.addMarkers(<%=raw @pindrop.to_json %>);
+            handler.bounds.extendWith(markers);
+            handler.fitMapToBounds();
+            handler.getMap();
+          }
+        );
+        </script>
         </div>
         <div class="col-xs-6 text-center">
           <h1>Welcome to Winner's Circle</h1>
