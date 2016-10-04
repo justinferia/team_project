@@ -2,9 +2,7 @@ class RegistrationsController < Devise::RegistrationsController
 
   def create
     super
-    @user = User.find(current_user.id)
-    @role = params[:role][:role_name]
-    @user.add_role(@role)
+    @user.add_role(params[:role][:role_name])
   end
 
   def after_sign_up_path_for(resource)
@@ -24,8 +22,6 @@ class RegistrationsController < Devise::RegistrationsController
   end
 
   def account_update_params
-
     params.require(:user).permit(:email, :password, :password_confirmation, :current_password, :role, :first_name, :last_name, :interests, :fitness_background, :image )
-
   end
 end

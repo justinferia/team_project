@@ -89,7 +89,8 @@ RSpec.feature "Workouts", type: :feature do
         select('Yoga', :from => 'Category')
         fill_in('Price', :with => '5.00')
         fill_in('Duration', :with => '1 hour')
-        select('Beginner', :from => 'Level')
+
+        select('Advanced', :from => 'Level')
         fill_in('Description', :with => 'Swimming, Biking, and Running Training')
         click_button('Create Workout')
       end
@@ -101,7 +102,7 @@ RSpec.feature "Workouts", type: :feature do
         expect(page).to have_content 'Yoga'
         expect(page).to have_content '5.0'
         expect(page).to have_content '1 hour'
-        expect(page).to have_content 'Beginner'
+        expect(page).to have_content 'Advanced'
         expect(page).to have_content 'Swimming, Biking, and Running Training'
       end #end of then
     end
@@ -137,4 +138,84 @@ RSpec.feature "Workouts", type: :feature do
       end#end then
     end#end of Steps
   end#end of context
+
+  context 'I can see filtered classes on the calendar after searching' do
+    Steps 'search for classes in search bar' do
+      Given 'That I am on the workouts page' do
+        visit '/'
+        click_link('Sign Up')
+        fill_in('user[first_name]',:with=>"Remy")
+        fill_in('user[last_name]',:with=>"pickles")
+        fill_in('user_email',:with=>"test@test.com")
+        fill_in('user[password]',:with=>"password")
+        fill_in('user_password_confirmation',:with=>"password")
+        select('Instructor',:from => "role[role_name]")
+        click_button("Sign up")
+        expect(page).to have_content 'Welcome! You have signed up successfully'
+        click_link ('Back')
+      end
+      Then 'I can fill out a form' do
+        click_link 'New Workout'
+        fill_in('Name', :with => 'Sunset Yoga')
+        select('2017', :from => 'workout[date(1i)]')
+        select('January', :from => 'workout[date(2i)]')
+        select('1', :from => 'workout[date(3i)]')
+        select('00', :from => 'workout[time(4i)]')
+        select('01', :from => 'workout[time(5i)]')
+        fill_in('Location', :with => '3803 Ray St')
+        select('Yoga', :from => 'Category')
+        fill_in('Price', :with => '5.00')
+        fill_in('Duration', :with => '1 hour')
+        select('Advanced', :from => 'Level')
+        fill_in('Description', :with => 'Yoga at Sunset')
+        click_button('Create Workout')
+    end
+    Then 'I am on the details page' do
+      expect(page).to have_content 'Sunset Yoga'
+      expect(page).to have_content '01/01/17'
+      expect(page).to have_content '12:01 AM'
+      expect(page).to have_content '3803 Ray St'
+      expect(page).to have_content 'Yoga'
+      expect(page).to have_content '5.0'
+      expect(page).to have_content '1 hour'
+      expect(page).to have_content 'Advanced'
+      expect(page).to have_content 'Yoga at Sunset'
+      click_link 'Back'
+      end #end of then
+      Then 'I can create another workout' do
+        click_link 'New Workout'
+        fill_in('Name', :with => 'Beach Yoga')
+        select('2018', :from => 'workout[date(1i)]')
+        select('January', :from => 'workout[date(2i)]')
+        select('1', :from => 'workout[date(3i)]')
+        select('00', :from => 'workout[time(4i)]')
+        select('01', :from => 'workout[time(5i)]')
+        fill_in('Location', :with => 'Huntington Beach')
+        select('Yoga', :from => 'Category')
+        fill_in('Price', :with => '5.00')
+        fill_in('Duration', :with => '1 hour')
+        select('Beginner', :from => 'Level')
+        fill_in('Description', :with => 'Yoga at the beach!')
+        click_button('Create Workout')
+        click_link 'Back'
+      end
+      And 'I can filter the classes' do
+        select('Yoga', :from => 'search1')
+        select('Advanced', :from => 'search2')
+        click_button 'searchbutton'
+      end
+      Then 'I can see the results that match my query' do
+        expect(page).to have_content 'Sunset Yoga'
+        expect(page).to_not have_content 'Beach Yoga'
+      end
+      Then 'I want to see classes for beginners' do
+        select('Beginner', :from => 'search2')
+        click_button 'searchbutton'
+      end
+      Then 'I expect to see the new results for my new query' do
+        expect(page).to have_content 'Beach Yoga'
+        expect(page).to_not have_content 'Sunset Yoga'
+      end
+    end
+  end
 end #end of RSpec
