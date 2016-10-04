@@ -1,7 +1,14 @@
-h1 {
 
+
+#map{
+  height: 500px;
+  width: 500px;
 }
 
+#infowindow{
+
+  color: yellow;
+}
 .welcome {
   background: url( "http://www.publicdomainpictures.net/pictures/120000/velka/outdoor-seminargruppe.jpg");
   background-size: cover;

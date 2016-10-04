@@ -15,6 +15,10 @@ RSpec.feature "LandingPages", type: :feature do
         sign_up("test@test.com", "password", "Alex", "Yong")
         expect(page).to have_content("Hello, Alex Yong ( guest )")
       end
+      Then 'i can also see a map on the landing page' do
+        visit '/'
+        find_by_id("map")
+      end
     end
   end
 end
