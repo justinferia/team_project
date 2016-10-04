@@ -89,6 +89,7 @@ RSpec.feature "Workouts", type: :feature do
         select('Yoga', :from => 'Category')
         fill_in('Price', :with => '5.00')
         fill_in('Duration', :with => '1 hour')
+
         select('Advanced', :from => 'Level')
         fill_in('Description', :with => 'Swimming, Biking, and Running Training')
         click_button('Create Workout')

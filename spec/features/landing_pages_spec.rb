@@ -16,7 +16,11 @@ RSpec.feature "LandingPages", type: :feature do
         click_link 'Sign Up'
         sign_up("test@test.com", "password", "Alex", "Yong")
         expect(page).to have_content("Hello, Alex Yong ( guest )")
-      end #end of then
+      end
+      Then 'i can also see a map on the landing page' do
+        visit '/'
+        find_by_id("map")
+      end
       And 'i can click on a button to show me the calendar of events' do
       visit '/'
       click_link 'Calendar of Events'
