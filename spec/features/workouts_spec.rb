@@ -87,9 +87,7 @@ RSpec.feature "Workouts", type: :feature do
         select('01', :from => 'workout[time(5i)]')
         fill_in('Location', :with => '3803 Ray St')
         select('Yoga', :from => 'Category')
-        fill_in('Price', :with => '5.00')
-        fill_in('Duration', :with => '1 hour')
-
+        select('90 Minutes', :from => 'Duration')
         select('Advanced', :from => 'Level')
         fill_in('Description', :with => 'Swimming, Biking, and Running Training')
         click_button('Create Workout')
@@ -100,8 +98,7 @@ RSpec.feature "Workouts", type: :feature do
         expect(page).to have_content '12:01 AM'
         expect(page).to have_content '3803 Ray St'
         expect(page).to have_content 'Yoga'
-        expect(page).to have_content '5.0'
-        expect(page).to have_content '1 hour'
+        expect(page).to have_content '90 Minutes'
         expect(page).to have_content 'Advanced'
         expect(page).to have_content 'Swimming, Biking, and Running Training'
       end #end of then
@@ -152,7 +149,8 @@ RSpec.feature "Workouts", type: :feature do
         select('Instructor',:from => "role[role_name]")
         click_button("Sign up")
         expect(page).to have_content 'Welcome! You have signed up successfully'
-        click_link ('Back')
+        click_link ('Sign Out')
+        log_in('test@test.com','password')
       end
       Then 'I can fill out a form' do
         click_link 'New Workout'
@@ -164,8 +162,7 @@ RSpec.feature "Workouts", type: :feature do
         select('01', :from => 'workout[time(5i)]')
         fill_in('Location', :with => '3803 Ray St')
         select('Yoga', :from => 'Category')
-        fill_in('Price', :with => '5.00')
-        fill_in('Duration', :with => '1 hour')
+        select('30 Minutes', :from => 'Duration')
         select('Advanced', :from => 'Level')
         fill_in('Description', :with => 'Yoga at Sunset')
         click_button('Create Workout')
@@ -176,27 +173,13 @@ RSpec.feature "Workouts", type: :feature do
       expect(page).to have_content '12:01 AM'
       expect(page).to have_content '3803 Ray St'
       expect(page).to have_content 'Yoga'
-      expect(page).to have_content '5.0'
-      expect(page).to have_content '1 hour'
+      expect(page).to have_content '30 Minutes'
       expect(page).to have_content 'Advanced'
       expect(page).to have_content 'Yoga at Sunset'
       click_link 'Back'
       end #end of then
       Then 'I can create another workout' do
-        click_link 'New Workout'
-        fill_in('Name', :with => 'Beach Yoga')
-        select('2018', :from => 'workout[date(1i)]')
-        select('January', :from => 'workout[date(2i)]')
-        select('1', :from => 'workout[date(3i)]')
-        select('00', :from => 'workout[time(4i)]')
-        select('01', :from => 'workout[time(5i)]')
-        fill_in('Location', :with => 'Huntington Beach')
-        select('Yoga', :from => 'Category')
-        fill_in('Price', :with => '5.00')
-        fill_in('Duration', :with => '1 hour')
-        select('Beginner', :from => 'Level')
-        fill_in('Description', :with => 'Yoga at the beach!')
-        click_button('Create Workout')
+        create_workout('Beach Yoga', '2018', 'January', '1', '00', '01', 'Huntington Beach', 'Yoga', '60 Minutes', 'Beginner', 'Yoga at the beach!')
         click_link 'Back'
       end
       And 'I can filter the classes' do
