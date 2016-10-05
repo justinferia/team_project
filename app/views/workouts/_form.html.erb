@@ -36,12 +36,8 @@
     <%= f.select :category, [ 'Yoga','Swimming','Weight Training', 'Cross Fit', 'Cardio'], :prompt => 'Select One' %>
   </div>
   <div class="field">
-    <%= f.label :price %><br>
-    <%= f.text_field :price %>
-  </div>
-  <div class="field">
     <%= f.label :duration %><br>
-    <%= f.text_field :duration %>
+    <%= f.select :duration, [ '30 Minutes','60 Minutes', '90 Minutes', '2+ Hours'], :prompt => 'Select One' %>
   </div>
   <div class="field">
     <%= f.label :level %><br>
