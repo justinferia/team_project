@@ -152,8 +152,23 @@ RSpec.feature "Workouts", type: :feature do
         click_link ('Sign Out')
         log_in('test@test.com','password')
       end
-      Then 'I can fill out a form' do
+      #test for the workout form alerts
+      Then 'I can try to fill out a form with out anything selected or filled' do
         click_link 'New Workout'
+        fill_in('Name', :with => '')
+        fill_in('Location', :with => '')
+        fill_in('Description', :with => '')
+        click_button('Create Workout')
+      end
+      Then 'I will see alerts for what I need to select or fill in' do
+        expect(page).to have_content "Name can't be blank"
+        expect(page).to have_content "Location can't be blank"
+        expect(page).to have_content "Category can't be blank"
+        expect(page).to have_content "Duration can't be blank"
+        expect(page).to have_content "Level can't be blank"
+        expect(page).to have_content "Description can't be blank"
+      end
+      Then 'I can fill out a form' do
         fill_in('Name', :with => 'Sunset Yoga')
         select('2017', :from => 'workout[date(1i)]')
         select('January', :from => 'workout[date(2i)]')
@@ -166,8 +181,8 @@ RSpec.feature "Workouts", type: :feature do
         select('Advanced', :from => 'Level')
         fill_in('Description', :with => 'Yoga at Sunset')
         click_button('Create Workout')
-    end
-    Then 'I am on the details page' do
+      end
+      Then 'I am on the details page' do
       expect(page).to have_content 'Sunset Yoga'
       expect(page).to have_content '01/01/17'
       expect(page).to have_content '12:01 AM'
@@ -201,4 +216,6 @@ RSpec.feature "Workouts", type: :feature do
       end
     end
   end
+
+
 end #end of RSpec
