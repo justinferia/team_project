@@ -15,6 +15,5 @@
 //= require moment
 //= require fullcalendar
 //= require underscore
-//= require oms
 //= require gmaps/google
 //= require_tree .
