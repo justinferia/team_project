@@ -20,8 +20,21 @@
             handler.bounds.extendWith(markers);
             handler.fitMapToBounds();
             handler.getMap();
+            if(navigator.geolocation)
+            navigator.geolocation.getCurrentPosition(displayOnMap);
+
           }
         );
+        function displayOnMap(position){
+          var marker = handler.addMarker({
+            lat: position.coords.latitude,
+            lng: position.coords.longitude
+
+          });
+          var image = '<%= asset_path 'person_icon.png' %>';
+          marker.serviceObject.icon = image;
+          handler.map.centerOn(marker);
+        };
         </script>
         </div>
         <div class="col-xs-6 text-center">
