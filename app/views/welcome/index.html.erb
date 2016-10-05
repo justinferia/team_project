@@ -10,7 +10,7 @@
         <div class="col-xs-6 text-center">
           <div id="map">Google map will appear here...</div>
           <script type="text/javascript">
-          handler = Gmaps.build('Google');
+          handler = Gmaps.build('Google', { markers: { maxRandomDistance: 20 } });
           handler.buildMap({
             provider: {},
             internal: {id: 'map'}
