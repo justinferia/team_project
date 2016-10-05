@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get '/workouts/search'
 
   resources :workouts do
+    #this returns json in all cases
     get :get_workouts, on: :collection
   end
 
