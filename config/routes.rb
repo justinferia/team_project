@@ -7,6 +7,8 @@ Rails.application.routes.draw do
 
   resources :workouts do
     get :get_workouts, on: :collection
+    get 'map_location'        # Add this and the "do" "end"
+
   end
 
   # The priority is based upon order of creation: first created -> highest priority.
