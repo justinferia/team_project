@@ -43,6 +43,7 @@
             <% if current_user.nil?%>
               <li><a href="/users/sign_up">Sign Up</a></li>
               <li><a href="/users/sign_in">Sign In</a></li>
+              <li><%= link_to "Sign in with Twitter", user_twitter_omniauth_authorize_path %></li>
             <%end%>
           </ul>
           <ul class="nav navbar-nav navbar-right">
