@@ -1,6 +1,7 @@
 class WorkoutsController < ApplicationController
   before_action :set_workout, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, except: [:index, :show, :get_workouts, :search]
+
   # GET /workouts
   # GET /workouts.json
   def index
@@ -107,6 +108,7 @@ class WorkoutsController < ApplicationController
       user = workout.user.present? ? workout.user.name : nil
       image = workout.user.present? ? workout.user.image.url : nil
       workouts << { id: workout.id, title: workout.name, start:DateTime.new(workout.date.year, workout.date.month, workout.date.day, workout.time.hour, workout.time.min, workout.time.sec).to_s, instructor:  user, description:workout.description, location: workout.location, date:workout.date, category: workout.category, duration: workout.duration, level:workout.level, time:workout.time.strftime('%r'), image: workout.user.image.url
+
       }
     end
     # changes the workout array into json
@@ -123,6 +125,6 @@ class WorkoutsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def workout_params
-      params.require(:workout).permit(:name, :user_id, :date, :time, :location, :category, :price, :duration, :level, :description)
+      params.require(:workout).permit(:name, :user_id, :date, :time, :location, :category, :duration, :level, :description)
     end
 end
