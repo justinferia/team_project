@@ -9,7 +9,7 @@ $(document).ready(function() {
      defaultView: "month",
      height: 500,
      slotMinutes: 15,
-     events: "/workouts/get_workouts/?search1=" +$("#category-search").html()+ "&search2="+$("#level-search").html(),
+     events: "/workouts/get_workouts/?search1=" +$("#category-search").html()+ "&search2="+$("#level-search").html()+"&search3="+$("#instructor-search").html(),
      timeFormat: "LT",
      dragOpacity: "0.5",
      eventClick:  function(event, jsEvent, view) {
