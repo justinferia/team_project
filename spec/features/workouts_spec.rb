@@ -78,6 +78,21 @@ RSpec.feature "Workouts", type: :feature do
         visit '/workouts'
         click_link('New Workout')
       end
+      #test for the workout form alerts and validations for posting a workout
+      Then 'I can try to fill out a form with out anything selected or filled' do
+        fill_in('Name', :with => '')
+        fill_in('Location', :with => '')
+        fill_in('Description', :with => '')
+        click_button('Create Workout')
+      end
+      Then 'I will see alerts for what I need to select or fill in' do
+        expect(page).to have_content "Name can't be blank"
+        expect(page).to have_content "Location can't be blank"
+        expect(page).to have_content "Category can't be blank"
+        expect(page).to have_content "Duration can't be blank"
+        expect(page).to have_content "Level can't be blank"
+        expect(page).to have_content "Description can't be blank"
+      end
       Then 'I can fill out a form' do
         fill_in('Name', :with => 'Triathlon training')
         select('2017', :from => 'workout[date(1i)]')
@@ -151,22 +166,6 @@ RSpec.feature "Workouts", type: :feature do
         expect(page).to have_content 'Welcome! You have signed up successfully'
         click_link ('Sign Out')
         log_in('test@test.com','password')
-      end
-      #test for the workout form alerts
-      Then 'I can try to fill out a form with out anything selected or filled' do
-        click_link 'New Workout'
-        fill_in('Name', :with => '')
-        fill_in('Location', :with => '')
-        fill_in('Description', :with => '')
-        click_button('Create Workout')
-      end
-      Then 'I will see alerts for what I need to select or fill in' do
-        expect(page).to have_content "Name can't be blank"
-        expect(page).to have_content "Location can't be blank"
-        expect(page).to have_content "Category can't be blank"
-        expect(page).to have_content "Duration can't be blank"
-        expect(page).to have_content "Level can't be blank"
-        expect(page).to have_content "Description can't be blank"
       end
       Then 'I can fill out a form' do
         fill_in('Name', :with => 'Sunset Yoga')
