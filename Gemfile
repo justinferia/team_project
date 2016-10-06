@@ -43,7 +43,8 @@ gem "awesome_print", require:"ap"
 
 gem 'geocoder'
 gem 'gmaps4rails'
-gem 'omniauth-twitter'
+gem 'omniauth-twitter', :github => 'arunagw/omniauth-twitter'
+gem 'activerecord-session_store'
 
 
 # Use ActiveModel has_secure_password
