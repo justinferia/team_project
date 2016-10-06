@@ -1,4 +1,7 @@
 class User < ActiveRecord::Base
+  validates :interests, presence: true, if: :check_role
+  validates :fitness_background, presence: true, if: :check_role
+
   has_attached_file :image, styles: { small: "64x64", med: "100x100", large: "200x200" }
   validates_attachment :image,
   content_type: { content_type: ["image/jpg", "image/jpeg", "image/png", "image/gif"] },
@@ -9,6 +12,11 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :omniauthable, :omniauth_providers => [:twitter]
+
+  def check_role
+    has_role? :instructor
+  end
+
 # make sure if the name is not present that there is something to fill the space (validation for name)
   def name
     if first_name.present? && last_name.present?
