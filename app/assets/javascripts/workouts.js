@@ -9,7 +9,7 @@ $(document).ready(function() {
      defaultView: "month",
      height: 500,
      slotMinutes: 15,
-     events: "/workouts/get_workouts/",
+     events: "/workouts/get_workouts/?search1=" +$("#category-search").html()+ "&search2="+$("#level-search").html()+"&search3="+$("#instructor-search").html(),
      timeFormat: "LT",
      dragOpacity: "0.5",
      eventClick:  function(event, jsEvent, view) {
@@ -20,7 +20,6 @@ $(document).ready(function() {
          $('#date').html(event.date);
          $('#time').html(event.time);
          $('#category').html(event.category);
-         $('#price').html(event.price);
          $('#duration').html(event.duration);
          $('#level').html(event.level);
          $('#image').attr("src", event.image);

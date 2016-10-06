@@ -48,29 +48,47 @@
 </div>
 
 <br>
-<form class="navbar-form navbar-left" action='/workouts/search' method='get' role="search">
+<form class="navbar-form navbar-left" action='/workouts/' method='get' role="search">
   <div class="form-group">
     <select class="form-control" name="search1">
-      <option value="">Select Category</option>        <option value="cardio">Cardio</option>
-      <option value="strength Training">Strength Training</option>
-      <option value="yoga">Yoga</option>
+      <option value="">Select Category</option>
+      <option value="Yoga">Yoga</option>
+      <option value="Swimming">Swimming</option>
+      <option value="Weight Training">Weight Training</option>
+      <option value="Cross Fit">Cross Fit</option>
+      <option value="Cardio">Cardio</option>
     </select>
     <select class="form-control" name="search2">
       <option value="">Select Level</option>
-      <option value="beginner">Beginner</option>
-      <option value="intermediate">Intermediate</option>
-      <option value="advanced">Advanced</option>
+      <option value="Beginner">Beginner</option>
+      <option value="Intermediate">Intermediate</option>
+      <option value="Advanced">Advanced</option>
+    </select>
+    <select class="form-control" name="search3">
+      <option value="">Select Instructor</option>
+      <% @users.each do |user| %>
+        <% if user.has_role? :instructor %>
+          <option value="<%=user.id%>"><%=user.first_name%> <%=user.last_name%></option>
+        <% end %>
+      <% end %>
     </select>
   </div>
     <button type="submit" class="btn btn-default" id="searchbutton"><span class="glyphicon glyphicon-search"></span></button>
 </form>
 <br>
-
-<div class="col-md-12 col-sm-12">
-  <label> Search Results: </label>
-<% @workouts.each do |workout| %>
- <ul>
-   <li><%= workout.name %></li>
- </ul>
-  <%end%>
-</div>
+<p id="category-search" hidden><%=params[:search1]%></p>
+<p id="level-search" hidden><%=params[:search2]%></p>
+<p id="instructor-search" hidden><%=params[:search3]%></p>
+<br>
+<br>
+<ul>
+<% if !params[:search1].empty? %>
+<li><h5><%=params[:search1]%></h5></li>
+<% end %>
+<% if !params[:search2].empty? %>
+<li><h5><%=params[:search2]%></h5></li>
+<% end %>
+<% if !params[:search3].empty? %>
+<li><h5><%=@users.find(params[:search3]).first_name%> <%=@users.find(params[:search3]).last_name%></h5></li>
+<% end %>
+</ul>

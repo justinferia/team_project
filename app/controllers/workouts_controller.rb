@@ -6,23 +6,24 @@ class WorkoutsController < ApplicationController
   # GET /workouts.json
   def index
     @workouts = Workout.all
+    @users = User.all
   end
 
-  def search
-      if (params[:search1].nil? || params[:search1].strip.empty?) && (params[:search2].nil? || params[:search2].strip.empty?)
-        @workouts = Workout.all
-      elsif
-      params[:search2].nil? || params[:search2].strip.empty?
-        @workouts = Workout.search(params[:search1])
-      elsif
-      params[:search1].nil? || params[:search1].strip.empty?
-        @workouts = Workout.search(params[:search2])
-      else
-        @workouts = Workout.search(params[:search1])
-        @workouts = @workouts.search(params[:search2])
-      end
-      render :index
-  end
+  # def search
+  #   if (params[:search1].nil? || params[:search1].strip.empty?) && (params[:search2].nil? || params[:search2].strip.empty?)
+  #     @workouts = Workout.all
+  #   elsif
+  #   params[:search2].nil? || params[:search2].strip.empty?
+  #     @workouts = Workout.search(params[:search1])
+  #   elsif
+  #   params[:search1].nil? || params[:search1].strip.empty?
+  #     @workouts = Workout.search(params[:search2])
+  #   else
+  #     @workouts = Workout.search(params[:search1])
+  #     @workouts = @workouts.search(params[:search2])
+  #   end
+  #   render :index
+  # end
 
   # GET /workouts/1
   # GET /workouts/1.json
@@ -32,7 +33,7 @@ class WorkoutsController < ApplicationController
   # GET /workouts/new
   def new
     if !current_user.has_role? :instructor
-      flash[:alert] = 'You must be an instructor to create a workout'
+      flash[:notice] = 'You must be an instructor to create a workout'
       redirect_to '/workouts/'
     else
     @workout = Workout.new
@@ -83,16 +84,51 @@ class WorkoutsController < ApplicationController
     end
   end
 
+  #this is to populate the calendar in workouts index, returns json
+  # takes params search1 and search2
   def get_workouts
-    @workouts = Workout.all
+
+    if params[:search1].strip.empty? && params[:search2].strip.empty? && params[:search3].strip.empty?
+      @workouts = Workout.all
+    elsif
+    params[:search2].strip.empty? && params[:search3].strip.empty?
+      @workouts = Workout.search(params[:search1])
+    elsif
+    params[:search1].strip.empty? && params[:search3].strip.empty?
+      @workouts = Workout.search(params[:search2])
+    elsif
+    params[:search1].strip.empty? && params[:search2].strip.empty?
+      @workouts = Workout.where(user_id: params[:search3])
+    elsif
+      params[:search3].strip.empty?
+      @workouts = Workout.search(params[:search1])
+      @workouts = @workouts.search(params[:search2])
+    elsif
+      params[:search2].strip.empty?
+      @workouts1 = Workout.search(params[:search1])
+      @workouts = @workouts1.where(user_id: params[:search3])
+    elsif
+      params[:search1].strip.empty?
+      @workouts2 = Workout.search(params[:search2])
+      @workouts = @workouts2.where(user_id: params[:search3])
+    else
+      @workouts1 = Workout.search(params[:search1])
+      @workouts2 = @workouts1.search(params[:search2])
+      @workouts = @workouts2.where(user_id: params[:search3])
+    end
+    # gets every workout in our database
+    # collection of data for all of the workouts to be displayed
     workouts = []
     @workouts.each do |workout|
       # value ? a : b means if value is true, do a.  If value is false, do b. (inline if statement)
+      #for each workout shouvel data to display into the workouts array
       user = workout.user.present? ? workout.user.name : nil
       image = workout.user.present? ? workout.user.image.url : nil
-      workouts << { id: workout.id, title: workout.name, start:DateTime.new(workout.date.year, workout.date.month, workout.date.day, workout.time.hour, workout.time.min, workout.time.sec).to_s, instructor: user, description: workout.description, location: workout.location, date:workout.date, category: workout.category, price: workout.price, duration: workout.duration, level:workout.level, time:workout.time.strftime('%r'), image: workout.user.image.url
+      workouts << { id: workout.id, title: workout.name, start:DateTime.new(workout.date.year, workout.date.month, workout.date.day, workout.time.hour, workout.time.min, workout.time.sec).to_s, instructor:  user, description:workout.description, location: workout.location, date:workout.date, category: workout.category, duration: workout.duration, level:workout.level, time:workout.time.strftime('%r'), image: workout.user.image.url
+
       }
     end
+    # changes the workout array into json
     render :json => workouts.to_json
   end
 

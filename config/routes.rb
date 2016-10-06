@@ -1,11 +1,12 @@
 Rails.application.routes.draw do
 
 
-  devise_for :users, :controllers => { registrations: 'registrations' }
+  devise_for :users, :controllers => { registrations: 'registrations', omniauth_callbacks: 'omniauth_callbacks'}
 
   get '/workouts/search'
 
   resources :workouts do
+    #this returns json in all cases
     get :get_workouts, on: :collection
     get 'map_location'        # Add this and the "do" "end"
 
