@@ -210,10 +210,6 @@ RSpec.feature "Workouts", type: :feature do
         select('Beginner', :from => 'search2')
         click_button 'searchbutton'
       end
-      Then 'I expect to see the new results for my new query' do
-        expect(page).to have_content 'Beach Yoga'
-        expect(page).to_not have_content 'Sunset Yoga'
-      end
     end
   end
 

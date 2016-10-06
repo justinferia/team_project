@@ -9,19 +9,19 @@ class WorkoutsController < ApplicationController
   end
 
   def search
-      if (params[:search1].nil? || params[:search1].strip.empty?) && (params[:search2].nil? || params[:search2].strip.empty?)
-        @workouts = Workout.all
-      elsif
-      params[:search2].nil? || params[:search2].strip.empty?
-        @workouts = Workout.search(params[:search1])
-      elsif
-      params[:search1].nil? || params[:search1].strip.empty?
-        @workouts = Workout.search(params[:search2])
-      else
-        @workouts = Workout.search(params[:search1])
-        @workouts = @workouts.search(params[:search2])
-      end
-      render :index
+    if (params[:search1].nil? || params[:search1].strip.empty?) && (params[:search2].nil? || params[:search2].strip.empty?)
+      @workouts = Workout.all
+    elsif
+    params[:search2].nil? || params[:search2].strip.empty?
+      @workouts = Workout.search(params[:search1])
+    elsif
+    params[:search1].nil? || params[:search1].strip.empty?
+      @workouts = Workout.search(params[:search2])
+    else
+      @workouts = Workout.search(params[:search1])
+      @workouts = @workouts.search(params[:search2])
+    end
+    render :index
   end
 
   # GET /workouts/1
@@ -83,16 +83,35 @@ class WorkoutsController < ApplicationController
     end
   end
 
+  #this is to populate the calendar in workouts index, returns json
+  # takes params search1 and search2
   def get_workouts
-    @workouts = Workout.all
+
+    if (params[:search1].nil? || params[:search1].strip.empty?) && (params[:search2].nil? || params[:search2].strip.empty?)
+      @workouts = Workout.all
+    elsif
+    params[:search2].nil? || params[:search2].strip.empty?
+      @workouts = Workout.search(params[:search1])
+    elsif
+    params[:search1].nil? || params[:search1].strip.empty?
+      @workouts = Workout.search(params[:search2])
+    else
+      @workouts = Workout.search(params[:search1])
+      @workouts = @workouts.search(params[:search2])
+    end
+    # gets every workout in our database
+    # collection of data for all of the workouts to be displayed
     workouts = []
     @workouts.each do |workout|
       # value ? a : b means if value is true, do a.  If value is false, do b. (inline if statement)
+      #for each workout shouvel data to display into the workouts array
       user = workout.user.present? ? workout.user.name : nil
       image = workout.user.present? ? workout.user.image.url : nil
-      workouts << { id: workout.id, title: workout.name, start:DateTime.new(workout.date.year, workout.date.month, workout.date.day, workout.time.hour, workout.time.min, workout.time.sec).to_s, instructor: user, description: workout.description, location: workout.location, date:workout.date, category: workout.category, price: workout.price, duration: workout.duration, level:workout.level, time:workout.time.strftime('%r'), image: workout.user.image.url
+      workouts << { id: workout.id, title: workout.name, start:DateTime.new(workout.date.year, workout.date.month, workout.date.day, workout.time.hour, workout.time.min, workout.time.sec).to_s, instructor:  user, description:workout.description, location: workout.location, date:workout.date, category: workout.category, duration: workout.duration, level:workout.level, time:workout.time.strftime('%r'), image: workout.user.image.url
+
       }
     end
+    # changes the workout array into json
     render :json => workouts.to_json
   end
 
