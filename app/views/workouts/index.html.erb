@@ -82,13 +82,19 @@
 <br>
 <br>
 <ul>
-<% if !params[:search1].empty? %>
-<li><h5><%=params[:search1]%></h5></li>
+<% if !params[:search1].nil? %>
+  <% if !params[:search1].empty? %>
+    <li><h5><%=params[:search1]%></h5></li>
+  <% end %>
 <% end %>
-<% if !params[:search2].empty? %>
-<li><h5><%=params[:search2]%></h5></li>
+<% if !params[:search2].nil? %>
+  <% if !params[:search2].empty? %>
+    <li><h5><%=params[:search2]%></h5></li>
+  <% end %>
 <% end %>
-<% if !params[:search3].empty? %>
-<li><h5><%=@users.find(params[:search3]).first_name%> <%=@users.find(params[:search3]).last_name%></h5></li>
+<% if !params[:search3].nil? %>
+  <% if !params[:search3].empty? %>
+    <li><h5><%=@users.find(params[:search3]).first_name%>    <%=@users.find(params[:search3]).last_name%></h5></li>
+  <% end %>
 <% end %>
 </ul>
