@@ -1,5 +1,15 @@
 class RegistrationsController < Devise::RegistrationsController
 
+  def update_resource(resource, params)
+    if current_user.provider == "twitter"
+      params.delete("current_password")
+      resource.update_without_password(params)
+    else
+      resource.update_with_password(params)
+    end
+  end
+
+
   def create
     super
     @user.add_role(params[:role][:role_name])
@@ -12,6 +22,8 @@ class RegistrationsController < Devise::RegistrationsController
       '/workouts' # Or :prefix_to_your_route
     end
   end
+
+  # Overwrite update_resource to let users to update their user without giving their password
 
   def role
     if current_user.has_role?(:guest)
