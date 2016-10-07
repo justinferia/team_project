@@ -13,7 +13,31 @@ class RegistrationsController < Devise::RegistrationsController
     end
   end
 
+  def role
+    if current_user.has_role?(:guest)
+      redirect_to "/workouts"
+    elsif current_user.has_role?(:instructor)
+      redirect_to "/workouts"
+    end
+  end
 
+  def guest
+    if !current_user.nil?
+      if !current_user.roles.nil?
+        current_user.add_role(:guest)
+      end
+    end
+    redirect_to "/workouts"
+  end
+
+  def instructor
+    if !current_user.nil?
+      if !current_user.roles.nil?
+        current_user.add_role(:instructor)
+      end
+    end
+    redirect_to "/users/edit"
+  end
 
   private
 

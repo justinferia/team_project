@@ -5,6 +5,11 @@ class WorkoutsController < ApplicationController
   # GET /workouts
   # GET /workouts.json
   def index
+    if !current_user.nil?
+      if current_user.roles.blank?
+        redirect_to "/users/role"
+      end
+    end
     @workouts = Workout.all
     @users = User.all
   end

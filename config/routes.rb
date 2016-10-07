@@ -3,7 +3,12 @@ Rails.application.routes.draw do
 
   devise_for :users, :controllers => { registrations: 'registrations', omniauth_callbacks: 'omniauth_callbacks'}
 
-  
+
+  devise_scope :user do
+    get '/users/role'=>'registrations#role'
+    get '/users/guest' => 'registrations#guest'
+    get '/users/instructor' => 'registrations#instructor'
+   end
 
   get '/workouts/search'
 

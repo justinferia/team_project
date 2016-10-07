@@ -1,5 +1,6 @@
 require 'rails_helper'
 #
+
 RSpec.feature "Twitter",js:true, type: :feature do
   context "go to website and sign in with twitter" do
     Steps 'Go to landing page' do
@@ -16,7 +17,11 @@ RSpec.feature "Twitter",js:true, type: :feature do
       end
       Then 'i have successfully signed in' do
         expect(page).to have_content("Successfully authenticated from Twitter account.")
-        expect(page).to have_content("gameboy55115@gmail.com")
+        expect(page).to have_content("jon")
+        click_link "Guest"
+      end
+      Then 'I should be in the workouts page' do
+        expect(page).to have_content("Workout Listings")
       end
     end
   end
