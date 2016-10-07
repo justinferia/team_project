@@ -6,23 +6,24 @@ class WorkoutsController < ApplicationController
   # GET /workouts.json
   def index
     @workouts = Workout.all
+    @users = User.all
   end
 
-  def search
-    if (params[:search1].nil? || params[:search1].strip.empty?) && (params[:search2].nil? || params[:search2].strip.empty?)
-      @workouts = Workout.all
-    elsif
-    params[:search2].nil? || params[:search2].strip.empty?
-      @workouts = Workout.search(params[:search1])
-    elsif
-    params[:search1].nil? || params[:search1].strip.empty?
-      @workouts = Workout.search(params[:search2])
-    else
-      @workouts = Workout.search(params[:search1])
-      @workouts = @workouts.search(params[:search2])
-    end
-    render :index
-  end
+  # def search
+  #   if (params[:search1].nil? || params[:search1].strip.empty?) && (params[:search2].nil? || params[:search2].strip.empty?)
+  #     @workouts = Workout.all
+  #   elsif
+  #   params[:search2].nil? || params[:search2].strip.empty?
+  #     @workouts = Workout.search(params[:search1])
+  #   elsif
+  #   params[:search1].nil? || params[:search1].strip.empty?
+  #     @workouts = Workout.search(params[:search2])
+  #   else
+  #     @workouts = Workout.search(params[:search1])
+  #     @workouts = @workouts.search(params[:search2])
+  #   end
+  #   render :index
+  # end
 
   # GET /workouts/1
   # GET /workouts/1.json
@@ -32,8 +33,11 @@ class WorkoutsController < ApplicationController
   # GET /workouts/new
   def new
     if !current_user.has_role? :instructor
-      flash[:alert] = 'You must be an instructor to create a workout'
+      flash[:notice] = 'You must be an instructor to create a workout'
       redirect_to '/workouts/'
+    elsif !current_user.image?
+      flash[:notice] = 'Please upload a picture!'
+      redirect_to '/users/edit/'
     else
     @workout = Workout.new
     end
@@ -87,17 +91,33 @@ class WorkoutsController < ApplicationController
   # takes params search1 and search2
   def get_workouts
 
-    if (params[:search1].nil? || params[:search1].strip.empty?) && (params[:search2].nil? || params[:search2].strip.empty?)
+    if params[:search1].strip.empty? && params[:search2].strip.empty? && params[:search3].strip.empty?
       @workouts = Workout.all
     elsif
-    params[:search2].nil? || params[:search2].strip.empty?
+    params[:search2].strip.empty? && params[:search3].strip.empty?
       @workouts = Workout.search(params[:search1])
     elsif
-    params[:search1].nil? || params[:search1].strip.empty?
+    params[:search1].strip.empty? && params[:search3].strip.empty?
       @workouts = Workout.search(params[:search2])
-    else
+    elsif
+    params[:search1].strip.empty? && params[:search2].strip.empty?
+      @workouts = Workout.where(user_id: params[:search3])
+    elsif
+      params[:search3].strip.empty?
       @workouts = Workout.search(params[:search1])
       @workouts = @workouts.search(params[:search2])
+    elsif
+      params[:search2].strip.empty?
+      @workouts1 = Workout.search(params[:search1])
+      @workouts = @workouts1.where(user_id: params[:search3])
+    elsif
+      params[:search1].strip.empty?
+      @workouts2 = Workout.search(params[:search2])
+      @workouts = @workouts2.where(user_id: params[:search3])
+    else
+      @workouts1 = Workout.search(params[:search1])
+      @workouts2 = @workouts1.search(params[:search2])
+      @workouts = @workouts2.where(user_id: params[:search3])
     end
     # gets every workout in our database
     # collection of data for all of the workouts to be displayed

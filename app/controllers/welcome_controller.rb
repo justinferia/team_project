@@ -7,7 +7,4 @@ class WelcomeController < ApplicationController
       marker.infowindow ("<strong>Class : " + workout.name + "<br> Instructor : " + workout.user.name + "<br> Time : " + workout.time.strftime('%r') +"</strong>")
     end
   end
-
-
-
 end
