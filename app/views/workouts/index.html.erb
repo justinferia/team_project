@@ -7,7 +7,7 @@
   <div id="new">
     <%if !current_user.nil?%>
     <% if current_user.has_role? :instructor %>
-    <%= link_to 'New Workout', new_workout_path %>
+    <%= link_to 'New Workout', new_workout_path, id: 'new_workout' %>
     <% end %>
     <% end %>
   </div>

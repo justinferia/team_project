@@ -1,11 +1,21 @@
 class User < ActiveRecord::Base
+  has_attached_file :image,
+    styles: {
+      small: "64x64",
+      med: "100x100",
+      large: "200x200" }
   validates :interests, presence: true, if: :check_role
   validates :fitness_background, presence: true, if: :check_role
-
-  has_attached_file :image, styles: { small: "64x64", med: "100x100", large: "200x200" }
+  has_attached_file :image,
+    styles: {
+      small: "64x64",
+      med: "100x100",
+      large: "200x200" }
   validates_attachment :image,
-  content_type: { content_type: ["image/jpg", "image/jpeg", "image/png", "image/gif"] },
-  size: { in: 0..10.megabytes }
+    content_type: { content_type: ["image/jpg", "image/jpeg", "image/png", "image/gif"] },
+    size: { in: 0..10.megabytes }
+
+  validates_presence_of :image, :if => :role_is_instructor?
 
   rolify
   # Include default devise modules. Others available are:
@@ -30,7 +40,12 @@ class User < ActiveRecord::Base
     end
   end
 
+  #method for validation on image upload on instructors
+  def role_is_instructor?
+    has_role? 'instructor'
+  end
 
+  #method for omniauth
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
 
@@ -50,4 +65,4 @@ class User < ActiveRecord::Base
       end
     end
   end
-end
+end #end of class

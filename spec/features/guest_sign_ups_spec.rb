@@ -60,9 +60,11 @@ RSpec.feature "UserSignUps", type: :feature do
         fill_in('user[current_password]',:with=>"password")
         fill_in('user_interests',:with=>"I love reading and working out")
         fill_in('user_fitness_background',:with=>"certified with NASM and played")
+        attach_file "user_image", File.join(Rails.root, "spec/assets/woman.png")
         click_button('Update')
       end
       Then 'I am on the home page' do
+        expect(page).to have_selector('img')
       end
     end
   end

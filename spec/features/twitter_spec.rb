@@ -17,7 +17,7 @@ RSpec.feature "Twitter",js:true, type: :feature do
       end
       Then 'i have successfully signed in' do
         expect(page).to have_content("Successfully authenticated from Twitter account.")
-        expect(page).to have_content("jon")
+        expect(page).to have_content("Hello, jon ( )")
         click_link "Guest"
       end
       Then 'I should be in the workouts page' do
