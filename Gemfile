@@ -67,6 +67,8 @@ group :test do
   gem 'rspec-example_steps'
   gem 'launchy'
   gem 'selenium-webdriver'
+  gem 'database_cleaner'
+
 end
 
 group :development do
