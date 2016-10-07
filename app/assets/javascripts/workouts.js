@@ -14,6 +14,7 @@ $(document).ready(function() {
      dragOpacity: "0.5",
      eventClick:  function(event, jsEvent, view) {
          $('#modalTitle').html(event.title);
+         $('#instructor').attr('href',event.link);
          $('#instructor').html(event.instructor);
          $('#description').html(event.description);
          $('#location').html(event.location);

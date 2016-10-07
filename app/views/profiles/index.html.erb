@@ -1,0 +1,22 @@
+<h1>Profiles#index</h1>
+<p>Find me in app/views/profiles/index.html.erb</p>
+<tbody>
+  <% @users.each do |user| %>
+    <tr>
+      <% if user.has_role? :instructor %>
+      <td><%= user.name %></td>
+      <% end %>
+    </tr>
+    <tr>
+      <% if user.has_role? :instructor %>
+      <td><%= user.interests %></td>
+      <% end %>
+    </tr>
+    <tr>
+      <% if user.has_role? :instructor %>
+      <td><%= user.fitness_background %></td>
+      <% end %>
+    </tr>
+  <% end %>
+</tbody>
+</table>

@@ -1,11 +1,16 @@
 Rails.application.routes.draw do
 
 
+  get 'profiles/index'
+
+  get 'profiles/:id' => 'profiles#show'
+
   devise_for :users, :controllers => { registrations: 'registrations', omniauth_callbacks: 'omniauth_callbacks'}
 
-  
+
 
   get '/workouts/search'
+  get '/profiles/index'
 
   resources :workouts do
     #this returns json in all cases
