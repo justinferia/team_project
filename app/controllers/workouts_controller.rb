@@ -41,7 +41,13 @@ class WorkoutsController < ApplicationController
       flash[:notice] = 'You must be an instructor to create a workout'
       redirect_to '/workouts/'
     elsif !current_user.image?
-      flash[:notice] = 'Please upload a picture!'
+      flash[:notice] = 'Please upload a Picture!'
+      redirect_to '/users/edit/'
+    elsif !current_user.interests?
+      flash[:notice] = 'Please include your Interests!'
+      redirect_to '/users/edit/'
+    elsif !current_user.fitness_background?
+      flash[:notice] = 'Please include your Fitness Background!'
       redirect_to '/users/edit/'
     else
     @workout = Workout.new

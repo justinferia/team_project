@@ -17,6 +17,7 @@ class User < ActiveRecord::Base
 
   validates_presence_of :image, :if => :role_is_instructor?
 
+
   rolify
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable

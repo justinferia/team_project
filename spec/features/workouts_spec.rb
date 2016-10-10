@@ -89,7 +89,7 @@ RSpec.feature "Workouts", type: :feature do
         visit '/workouts'
         click_link('New Workout')
       end
-      Then 'I am redirected to upload a picture, interests, and backgroud for my profile' do
+      Then 'I am redirected to upload a picture, interests, and background for my profile' do
         visit '/users/edit'
         fill_in('user[current_password]',:with=>"password")
         fill_in('user_interests',:with=>"I love reading and working out")
