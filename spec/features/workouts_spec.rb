@@ -24,8 +24,8 @@ RSpec.feature "Workouts", type: :feature do
     end
   end #end of context
 
-  context 'I can sign up, sign in, and delete my acc' do
-    Steps 'Sign up, Sign out, Sign in, Destroy acc' do
+  context 'I can sign up, log in, and delete my acc' do
+    Steps 'Sign up, Sign out, Log in, Destroy acc' do
       Given 'I can go to the home page' do
         visit '/'
       end
@@ -42,8 +42,8 @@ RSpec.feature "Workouts", type: :feature do
         click_link('Sign Out')
         expect(page).to have_content 'Signed out successfully'
       end
-      Then 'I can sign in using the acc I previously made' do
-        click_link('Sign In')
+      Then 'I can log in using the acc I previously made' do
+        click_link('Log in')
         fill_in('user_email',:with=>"test@test.com")
         fill_in('user[password]',:with=>"password")
         click_button('Log in')
@@ -79,7 +79,7 @@ RSpec.feature "Workouts", type: :feature do
         click_link('Sign Out')
       end
       When 'I sign back in' do
-        click_link('Sign In')
+        click_link('Log in')
         fill_in('user_email',:with=>"test@test.com")
         fill_in('user[password]',:with=>"password")
         click_button('Log in')

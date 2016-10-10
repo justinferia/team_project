@@ -28,7 +28,7 @@ RSpec.feature "UserSignUps", type: :feature do
         expect(page).to have_content("Signed out successfully")
       end
       Then "i can sign back in with same login" do
-        click_link("Sign In")
+        click_link("Log in")
         fill_in('user_email',:with=>"test@test.com")
         fill_in('user_password',:with=>"password")
         click_button('Log in')
@@ -116,7 +116,7 @@ RSpec.feature "UserSignUps", type: :feature do
         Then 'i can see my first name updated and log in with new password' do
           expect(page).to have_content("Sea")
           click_link('Sign Out')
-          click_link('Sign In')
+          click_link('Log in')
           fill_in('user_email',:with=>"test@test.com")
           fill_in('user[password]',:with=>"123456")
           click_button('Log in')
