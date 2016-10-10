@@ -47,28 +47,28 @@
             " aria-hidden="true"></span> Sign In</a></li>
             <li>
               <%= link_to user_twitter_omniauth_authorize_path do %>
-                <i class="fa fa-twitter" aria-hidden="true"></i>
-                Sign in with Twitter
+              <i class="fa fa-twitter" aria-hidden="true"></i>
+              Sign in with Twitter
               <% end %>
             </li>
             <%end%>
-          <ul class="nav navbar-nav navbar-right">
-            <%if !current_user.nil?%>
-            <li id="nav-icon">
-              <%if !current_user.image_file_name.nil?%>
-              <%= link_to_if 1==2, image_tag(current_user.image.url), current_user.image.url%>
-              <%end%>
+            <ul class="nav navbar-nav navbar-right">
+              <%if !current_user.nil?%>
+              <li id="nav-icon">
+                <%if !current_user.image_file_name.nil?%>
+                <%= link_to_if 1==2, image_tag(current_user.image.url), current_user.image.url%>
+                <%end%>
+              </li>
+              <li><a href="/users/edit">
+                Hello, <%= "#{current_user.name} ( #{current_user.roles.pluck(:name).join(", ") } )" %>
+              </a>
             </li>
-            <li><a href="/users/edit">
-              Hello, <%= "#{current_user.name} ( #{current_user.roles.pluck(:name).join(", ") } )" %>
-            </a>
-          </li>
-          <%end%>
-        </ul>
-      </nav>
-      <p class="notice"><%= notice %></p>
-      <%= yield %>
-    </div>
+            <%end%>
+          </ul>
+        </nav>
+        <p class="notice"><%= notice %></p>
+        <%= yield %>
+      </div>
 
-  </body>
-  </html>
+    </body>
+    </html>
