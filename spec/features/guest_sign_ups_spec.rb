@@ -28,7 +28,7 @@ RSpec.feature "UserSignUps", type: :feature do
         expect(page).to have_content("Signed out successfully")
       end
       Then "i can sign back in with same login" do
-        click_link("Sign In")
+        click_link("Log in")
         fill_in('user_email',:with=>"test@test.com")
         fill_in('user_password',:with=>"password")
         click_button('Log in')
@@ -60,9 +60,11 @@ RSpec.feature "UserSignUps", type: :feature do
         fill_in('user[current_password]',:with=>"password")
         fill_in('user_interests',:with=>"I love reading and working out")
         fill_in('user_fitness_background',:with=>"certified with NASM and played")
+        attach_file "user_image", File.join(Rails.root, "spec/assets/woman.png")
         click_button('Update')
       end
       Then 'I am on the home page' do
+        expect(page).to have_selector('img')
       end
     end
   end
@@ -114,7 +116,7 @@ RSpec.feature "UserSignUps", type: :feature do
         Then 'i can see my first name updated and log in with new password' do
           expect(page).to have_content("Sea")
           click_link('Sign Out')
-          click_link('Sign In')
+          click_link('Log in')
           fill_in('user_email',:with=>"test@test.com")
           fill_in('user[password]',:with=>"123456")
           click_button('Log in')

@@ -12,7 +12,7 @@ module FeatureSupport
   end
 
   def log_in(email, password)
-    click_link('Sign In')
+    click_link('Log in')
     fill_in('user[email]', :with=>email)
     fill_in('user[password]', :with=>password)
     click_button('Log in')
@@ -20,7 +20,7 @@ module FeatureSupport
 
   def create_workout(class_name, year, month, day, hour, minute, location, category, duration, level, description)
     click_link('New Workout')
-    fill_in('Name', :with => class_name)
+    fill_in('workout[name]', :with => class_name)
     select(year, :from => 'workout[date(1i)]')
     select(month, :from => 'workout[date(2i)]')
     select(day, :from => 'workout[date(3i)]')

@@ -9,6 +9,13 @@ Rails.application.routes.draw do
 
 
 
+  devise_scope :user do
+    get '/users/role'=>'registrations#role'
+    get '/users/guest' => 'registrations#guest'
+    get '/users/instructor' => 'registrations#instructor'
+   end
+
+
   get '/workouts/search'
   get '/profiles/index'
 

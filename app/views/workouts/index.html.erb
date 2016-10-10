@@ -2,12 +2,12 @@
 
 <div class="container">
 
-  <h1>Workout Listings</h1>
+  <h1 class="top huge_name center">Workout Listings</h1>
 
   <div id="new">
     <%if !current_user.nil?%>
     <% if current_user.has_role? :instructor %>
-    <%= link_to 'New Workout', new_workout_path %>
+    <%= link_to 'New Workout', new_workout_path, id: 'new_workout' %>
     <% end %>
     <% end %>
   </div>
@@ -26,12 +26,13 @@
         <div class="container modal-body">
           <div class="row">
             <div class="col-xs-3">
-              <strong>Instructor</strong><p><a id="instructor"></a></p>
-              Date: <p id="date"></p>
-              Time: <p id="time"></p>
-              Location: <p id="location"></p>
-              Duration: <p id="duration"></p>
-              <strong>Class Description</strong><p id="description"></p>
+
+              <strong class="octin">Instructor</strong><p><a id="instructor"></a></p>
+              <strong class="octin">Date: </strong><p id="date" ></p>
+              <strong class="octin">Time: </strong><p id="time"></p>
+              <strong class="octin">Location: </strong><p id="location"></p>
+              <strong class="octin">Duration: </strong><p id="duration"></p>
+              <strong class="octin">Class Description</strong><p id="description"></p>
             </div>
             <div class="col-xs-3">
               <div class="image-responsive">
@@ -67,13 +68,13 @@
     <select class="form-control" name="search3">
       <option value="">Select Instructor</option>
       <% @users.each do |user| %>
-        <% if user.has_role? :instructor %>
-          <option value="<%=user.id%>"><%=user.first_name%> <%=user.last_name%></option>
-        <% end %>
+      <% if user.has_role? :instructor %>
+      <option value="<%=user.id%>"><%=user.first_name%> <%=user.last_name%></option>
+      <% end %>
       <% end %>
     </select>
   </div>
-    <button type="submit" class="btn btn-default" id="searchbutton"><span class="glyphicon glyphicon-search"></span></button>
+  <button type="submit" class="btn btn-default" id="searchbutton"><span class="glyphicon glyphicon-search"></span></button>
 </form>
 <br>
 <p id="category-search" hidden><%=params[:search1]%></p>
@@ -82,19 +83,19 @@
 <br>
 <br>
 <ul>
-<% if !params[:search1].nil? %>
+  <% if !params[:search1].nil? %>
   <% if !params[:search1].empty? %>
-    <li><h5><%=params[:search1]%></h5></li>
+  <li><h5><%=params[:search1]%></h5></li>
   <% end %>
-<% end %>
-<% if !params[:search2].nil? %>
+  <% end %>
+  <% if !params[:search2].nil? %>
   <% if !params[:search2].empty? %>
-    <li><h5><%=params[:search2]%></h5></li>
+  <li><h5><%=params[:search2]%></h5></li>
   <% end %>
-<% end %>
-<% if !params[:search3].nil? %>
+  <% end %>
+  <% if !params[:search3].nil? %>
   <% if !params[:search3].empty? %>
-    <li><h5><%=@users.find(params[:search3]).first_name%>    <%=@users.find(params[:search3]).last_name%></h5></li>
+  <li><h5><%=@users.find(params[:search3]).first_name%>    <%=@users.find(params[:search3]).last_name%></h5></li>
   <% end %>
-<% end %>
+  <% end %>
 </ul>
