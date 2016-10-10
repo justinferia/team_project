@@ -139,7 +139,6 @@ class WorkoutsController < ApplicationController
       user = workout.user.present? ? workout.user.name : nil
       image = workout.user.present? ? workout.user.image.url : nil
       workouts << { id: workout.id, title: workout.name, start:DateTime.new(workout.date.year, workout.date.month, workout.date.day, workout.time.hour, workout.time.min, workout.time.sec).to_s, link: "/profiles/"+workout.user.id.to_s, instructor: user, description:workout.description, location: workout.location, date:workout.date, category: workout.category, duration: workout.duration, level:workout.level, time:workout.time.strftime('%r'), image: workout.user.image.url
-
       }
     end
     # changes the workout array into json

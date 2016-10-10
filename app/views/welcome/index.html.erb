@@ -7,7 +7,7 @@
 
     <body>
       <div class="row">
-        <div class="col-xs-6 text-center">
+        <div class="col-md-6 center">
           <div id="map">Google map will appear here...</div>
           <script type="text/javascript">
           handler = Gmaps.build('Google', { markers: { maxRandomDistance: 20 } });
@@ -36,15 +36,19 @@
         };
         </script>
         </div>
-        <div class="col-xs-6 text-center">
-          <h1>Welcome to Winner's Circle</h1>
-          <p>
+        <div class="col-md-6 text-center" >
+          <p class="huge_name top">Welcome to Winner's Circle</p>
+          <br>
+          <div class="biggest">
             Let's find a workout just for you!
-          </p>
-          <p>
-              <li>Please sign in as Guest to RSVP for events</li>
-              <li>Please sign in as Instructor to host an event</li>
-          </p>
+          </div>
+          <div class="bigger">
+            <br>
+            Please sign in as Guest to RSVP for events
+            <br>
+            Please sign in as Instructor to host an event
+          </div>
+          <br>
           <a href="/workouts" type="button" class="btn btn-success">Calendar of Events</a>
         </div>
       </div>

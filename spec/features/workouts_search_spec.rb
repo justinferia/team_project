@@ -49,10 +49,12 @@ RSpec.feature "Workouts", type: :feature do
         select('Yoga', :from => 'search1')
         select('Advanced', :from => 'search2')
         click_button 'searchbutton'
+        expect(page).to have_content 'Yoga | Advanced'
       end
       Then 'I want to see classes for beginners' do
         select('Beginner', :from => 'search2')
         click_button 'searchbutton'
+        expect(page).to_not have_content '|'
       end
       Then 'I want to search for classes by instructor' do
         select('Remy Pickles', :from => 'search3')
