@@ -12,7 +12,7 @@ module FeatureSupport
   end
 
   def log_in(email, password)
-    click_link('Sign In')
+    click_link('Log in')
     fill_in('user[email]', :with=>email)
     fill_in('user[password]', :with=>password)
     click_button('Log in')
