@@ -27,6 +27,18 @@ RSpec.feature "Workouts", type: :feature do
         expect(page).to have_content 'tacos'
         expect(page).to have_content 'hardcore lunges'
       end
+      Given "I'm on the workouts page" do
+        visit '/profiles/1'
+      end # end of given
+      Then 'I can see the list of classes for that instructor' do
+        expect(page).to have_content 'My Classes'
+        expect(page).to have_content 'Class Name'
+        expect(page).to have_content 'Date'
+        expect(page).to have_content 'Time'
+        expect(page).to have_content 'Location'
+        expect(page).to have_content 'Duration'
+        expect(page).to have_content 'Class Description'
+      end
     end
   end
 end

@@ -10,3 +10,30 @@
 <p><strong>Fitness Background:</strong>
   <%=@user.fitness_background%>
 </p>
+<% if !@user.image.url.nil? %>
+<%=image_tag(@user.image.url)%>
+<% end %>
+
+<h3>My Classes</h3>
+<div class="table-responsive">
+  <table class="table-bordered">
+    <tr>
+      <td><strong>Class Name</strong></td>
+      <td><strong>Date</strong></td>
+      <td><strong>Time</strong></td>
+      <td><strong>Location</strong></td>
+      <td><strong>Duration</strong></td>
+      <td><strong>Class Description</strong></td>
+     </tr>
+    <% @workouts.each do |workout| %>
+     <tr>
+       <td><%= workout.name %></td>
+       <td><%= workout.date.strftime("%m/%d/%y") %></td>
+       <td><%= workout.time.strftime('%r') %></td>
+       <td><%= workout.location %></td>
+       <td><%= workout.duration %></td>
+       <td><%= workout.description %></td>
+     </tr>
+    <% end %>
+   </table>
+ </div>
