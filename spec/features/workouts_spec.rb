@@ -197,6 +197,7 @@ RSpec.feature "Workouts", type: :feature do
         click_button('Update')
       end
       Then 'I can fill out a form' do
+        click_link("Winner's Circle")
         click_link('Calendar of Events')
         click_link('New Workout')
         fill_in('Name', :with => 'Sunset Yoga')

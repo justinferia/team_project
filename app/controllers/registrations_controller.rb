@@ -23,7 +23,12 @@ class RegistrationsController < Devise::RegistrationsController
     end
   end
 
+  def after_update_path_for(resource)
+    '/profiles/' + current_user.id.to_s
+  end
+
   # Overwrite update_resource to let users to update their user without giving their password
+
 
   def role
     if current_user.has_role?(:guest)

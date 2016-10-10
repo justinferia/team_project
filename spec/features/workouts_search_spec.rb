@@ -26,6 +26,7 @@ RSpec.feature "Workouts", type: :feature do
         click_button('Update')
       end
       Then 'I can create another workout' do
+        click_link("Winner's Circle")
         click_link('Calendar of Events')
         create_workout('Beach Yoga', '2018', 'January', '1', '00', '01', 'Huntington Beach', 'Yoga', '60 Minutes', 'Beginner', 'Yoga at the beach!')
       end
