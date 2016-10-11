@@ -1,9 +1,9 @@
 class User < ActiveRecord::Base
-  has_attached_file :image,
-    styles: {
-      small: "64x64",
-      med: "100x100",
-      large: "200x200" }
+  has_attached_file :image
+    # styles: {
+    #   small: "64x64",
+    #   med: "100x100",
+    #   large: "200x200" }
   validates :interests, presence: true, if: :check_role
   validates :fitness_background, presence: true, if: :check_role
   validates_attachment :image,
