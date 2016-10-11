@@ -16,3 +16,9 @@
 #image{
   height: 250px;
 }
+
+#calendar {
+  height: auto;
+  width: auto;
+  overflow: scroll;
+}
