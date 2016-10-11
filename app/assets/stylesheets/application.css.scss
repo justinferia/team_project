@@ -14,28 +14,23 @@
  *= require_tree .
  *= require_self
  */
- // adding in style for LINKS
- a:hover {
-    background-color: white;
-}
-// adding in * after fields that are required
- label.required:after {
-     content: " *";
-     color: red;
- }
 
-
- // navbar
-#nav-icon > img{
+// navbar style
+#nav-icon > img {
   height: 50px;
   width: 50px;
   border-radius: 50%;
 }
 
 #nav {
-    width:auto;}
+    width:auto;
+}
 
-.white{
+.navbar-right {
+      margin-right: 0 !important;
+}
+
+.white {
   color: white;
 }
 
