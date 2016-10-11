@@ -3,6 +3,9 @@
 <div class="row">
   <div class="col-xs-1 col-lg-4"></div>
   <div class="col-xs-10 col-lg-4">
+    <div class="move_right">
+      <span class="glyphicon glyphicon-backward" aria-hidden="true"> </span> <%= link_to "Back", :back %>
+    </div>
     <div class="row text-center"><%= form_for(@workout) do |f| %>
       <% if @workout.errors.any? %>
       <div id="error_explanation">
