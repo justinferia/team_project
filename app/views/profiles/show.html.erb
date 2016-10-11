@@ -2,9 +2,9 @@
 <div class="container">
   <div id="wrapper">
   <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-12 capitalize">
     <div class="instructor">
-  <h1>Instructor Profile</h1>
+  <h1 class="top huge text-center">Instructor Profile</h1>
   <br/>
       <% if !@user.image.url.nil? %>
       <%=image_tag @user.image.url(:large) %>
@@ -26,17 +26,17 @@
 </div>
 <div id="tableinfo">
 <div class="col-md-12">
-  <h3>My Classes</h3>
+  <h3 class="top biggest">My Classes</h3>
   <br/>
       <div class="table-responsive text-center">
-        <table class="table-striped">
+        <table class="table-striped capitalize">
           <tr>
-            <td><strong>Class Name</strong></td>
-            <td><strong>Date</strong></td>
-            <td><strong>Time</strong></td>
-            <td><strong>Location</strong></td>
-            <td><strong>Duration</strong></td>
-            <td><strong>Class Description</strong></td>
+            <td class="octin"><strong>Class Name</strong></td>
+            <td class="octin"class="octin"><strong>Date</strong></td>
+            <td class="octin"><strong>Time</strong></td>
+            <td class="octin"><strong>Location</strong></td>
+            <td class="octin"><strong>Duration</strong></td>
+            <td class="octin"><strong>Class Description</strong></td>
            </tr>
           <% @workouts.each do |workout| %>
            <tr>
@@ -47,7 +47,7 @@
              <td><%= workout.duration %></td>
              <td><%= workout.description %></td>
              <%if current_user.id == @user.id%>
-             <td><%= link_to 'Edit Profile', edit_workout_path(workout) %></td>
+             <td><%= link_to 'Edit', edit_workout_path(workout) %></td>
              <td><%= link_to 'Destroy', workout, method: :delete, data: { confirm: 'Are you sure?' } %></td>
              <%end%>
            </tr>
