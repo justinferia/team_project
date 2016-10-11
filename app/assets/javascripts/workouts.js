@@ -9,7 +9,7 @@ $(document).ready(function() {
      defaultView: "month",
      height: 500,
      slotMinutes: 15,
-     events: "/workouts/get_workouts/?search1=" +$("#category-search").html()+ "&search2="+$("#level-search").html()+"&search3="+$("#instructor-search").html(),
+     events: "/workouts/get_workouts/?search1="+$("#category-search").html()+ "&search2="+$("#level-search").html()+"&search3="+$("#instructor-search").html(),
      timeFormat: "LT",
      dragOpacity: "0.5",
      eventClick:  function(event, jsEvent, view) {
@@ -29,4 +29,15 @@ $(document).ready(function() {
          return false;
      }
   });
+
+  $('#search').click(function(){
+    $('#calendar').fullCalendar( 'removeEvents' );
+    var events = {
+      url: "/workouts/get_workouts/?search1="+document.getElementById('search-category').value+ "&search2="+document.getElementById('search-level').value+"&search3="+document.getElementById('search-instructor').value
+    }
+    $('#calendar').fullCalendar( 'removeEventSource', events);
+    $('#calendar').fullCalendar( 'addEventSource', events);
+    $('#calendar').fullCalendar( 'rerenderEvents' );
+  }).change();
+
 });
