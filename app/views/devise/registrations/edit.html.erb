@@ -5,12 +5,15 @@
       <span class="glyphicon glyphicon-backward" aria-hidden="true"> </span> <%= link_to "Back", :back %>
     </div>
     <h2 class="center top huge">Edit <%= resource_name.to_s.humanize %></h2>
-    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, multipart: true }) do |f| %>
     <%= devise_error_messages! %>
+
+
     <%if current_user.provider=="twitter"%>
     <div class="row">
       <div class="col-md-12">
         <div class="well">
+          <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, multipart: true }) do |f| %>
+
           <div class="field">
             <%= f.label :first_name %><br />
             <%= f.text_field :first_name, autofocus: true, class: 'form-control' %>
