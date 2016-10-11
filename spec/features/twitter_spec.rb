@@ -24,7 +24,7 @@ RSpec.feature "Twitter",js:true, type: :feature do
         expect(page).to have_content("Workout Listings")
       end
       Then 'I go to edit page and see no param to input passwords' do
-        click_link "Hello, jon ( guest )"
+        click_link "Edit"
         expect(page).to_not have_content("Password confirmation")
         expect(page).to_not have_content("Password")
         expect(page).to_not have_content("Current password")
