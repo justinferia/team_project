@@ -67,7 +67,7 @@
               Hello, <%= "#{current_user.name} ( #{current_user.roles.pluck(:name).join(", ") } )" %>
             </a>
           </li>
-          <li><a href="/users/edit">Edit</a></li>
+          <li><a href="/users/edit"><i class="fa fa-pencil fa-lg" aria-hidden="true"></i></a></li>
           <%end%>
         </ul>
 
