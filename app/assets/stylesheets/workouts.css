@@ -7,6 +7,13 @@
   text-transform: capitalize;
 }
 
+.modal-body{
+  text-transform: capitalize;
+}
+
+#calendar {
+  text-transform: capitalize;
+}
 .center_button {
   margin: auto;
   text-align: center;
