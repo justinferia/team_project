@@ -63,11 +63,14 @@
               <%= link_to_if 1==2, image_tag(current_user.image.url), current_user.image.url%>
               <%end%>
             </li>
-            <li><a href="/users/edit" class="octin">
+            <li><a href="/profiles/<%=current_user.id%>" class="octin">
               Hello, <%= "#{current_user.name} ( #{current_user.roles.pluck(:name).join(", ") } )" %>
-              <%end%>
-            </a></li>
-          </ul>
+            </a>
+          </li>
+          <li><a href="/users/edit">Edit</a></li>
+          <%end%>
+        </ul>
+
       </nav>
       <div class="container-fluid">
       <%= yield %>

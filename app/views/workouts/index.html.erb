@@ -25,6 +25,7 @@
         </div>
         <div class="container modal-body">
           <div class="row">
+
             <div class="col-md-3">
 
               <strong class="octin big">Instructor</strong><p><a id="instructor"></a></p>
@@ -49,6 +50,66 @@
 </div>
 
 <br>
+<<<<<<< HEAD
+<div class="container">
+  <form class="navbar-form text-center" action='/workouts/' method='get' role="search">
+    <div class="form-group">
+      <select class="form-control" name="search1">
+        <option value="">Select Category</option>
+        <option value="Yoga">Yoga</option>
+        <option value="Swimming">Swimming</option>
+        <option value="Weight Training">Weight Training</option>
+        <option value="Cross Fit">Cross Fit</option>
+        <option value="Cardio">Cardio</option>
+      </select>
+      <select class="form-control" name="search2">
+        <option value="">Select Level</option>
+        <option value="Beginner">Beginner</option>
+        <option value="Intermediate">Intermediate</option>
+        <option value="Advanced">Advanced</option>
+      </select>
+      <select class="form-control" name="search3">
+        <option value="">Select Instructor</option>
+        <% @users.each do |user| %>
+        <% if user.has_role? :instructor %>
+        <option value="<%=user.id%>"><%=user.first_name%> <%=user.last_name%></option>
+        <% end %>
+        <% end %>
+      </select>
+    </div>
+    <button type="submit" class="btn btn-default" id="searchbutton"><span class="glyphicon glyphicon-search"></span></button>
+  </form>
+  <br>
+  <p id="category-search" hidden><%=params[:search1]%></p>
+  <p id="level-search" hidden><%=params[:search2]%></p>
+  <p id="instructor-search" hidden><%=params[:search3]%></p>
+  <div class="text-center">
+    <p>
+      <% if !params[:search1].nil? %>
+        <% if !params[:search1].empty? %>
+          <%=params[:search1]%>
+          <% end %>
+      <% end %>
+      <% if !params[:search2].nil? %>
+        <% if !params[:search2].empty? %>
+          <% if !params[:search1].empty?%>
+            |
+          <% end %>
+          <%=params[:search2]%>
+          <% end %>
+      <% end %>
+      <% if !params[:search3].nil? %>
+        <% if !params[:search3].empty? %>
+          <% if !params[:search1].empty? || !params[:search2].empty?%>
+            |
+          <% end %>
+          <%=@users.find(params[:search3]).first_name%>    <%=@users.find(params[:search3]).last_name%>
+        <% end %>
+      <% end %>
+    </p>
+  </div>
+</div>
+=======
 <form class="navbar-form text-center" action='/workouts/' method='get' role="search">
   <div class="form-group">
     <select class="form-control" name="search1" id="search-category">
@@ -80,3 +141,4 @@
 <p id="category-search" hidden><%=params[:search1]%></p>
 <p id="level-search" hidden><%=params[:search2]%></p>
 <p id="instructor-search" hidden><%=params[:search3]%></p>
+>>>>>>> master
