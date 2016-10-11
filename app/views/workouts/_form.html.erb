@@ -1,64 +1,66 @@
-<div class="row text-center"><%= form_for(@workout) do |f| %>
-  <% if @workout.errors.any? %>
-  <div id="error_explanation">
-    <h2><%= pluralize(@workout.errors.count, "error") %> prohibited this workout from being saved:</h2>
-
-    <ul>
-      <% @workout.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
-      <% end %>
-    </ul>
-  </div>
-  <% end %>
-</div>
 
 <!--"class" added to name field to remove confusion with instructor name.   -->
 <div class="row">
   <div class="col-xs-1 col-lg-4"></div>
-  <div class="col-xs-10 col-lg-4 well">
-    <div class="field"><strong>Class</strong>
-      <%= f.label :name, class:'required' %><br>
-      <%= f.text_field :name, class:'form-control' %>
+  <div class="col-xs-10 col-lg-4">
+    <div class="row text-center"><%= form_for(@workout) do |f| %>
+      <% if @workout.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@workout.errors.count, "error") %> prohibited this workout from being saved:</h2>
+
+        <ul>
+          <% @workout.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+      <% end %>
     </div>
-    <div class="field hidden">
-      <%= f.hidden_field :user_id, value: current_user.id %>
-    </div>
-    <div class="field">
-      <%= f.label :date, class:'required' %><br>
-      <%= f.date_select :date%>
-    </div>
-    <div class="field">
-      <%= f.label :time, class:'required' %><br>
-      <%= f.time_select :time%>
-    </div>
-    <div class="field">
-      <%= f.label :location, class:'required'  %><br>
-      <p>Please include a location with a city name, zipcode, and/or full address</p>
-      <p>ex: Morley Field, San Diego</p>
-      <%= f.text_field :location, class:'form-control' %>
-    </div>
-    <div class="field">
-      <%= f.label :category, class:'required'  %><br>
-      <%= f.select :category, [ 'Yoga','Swimming','Weight Training', 'Cross Fit', 'Cardio'], :prompt => 'Select One'%>
-    </div>
+    <div class="well">
+      <div class="field">
+        <%= f.label :name, class:'required' %>
+        <%= f.text_field :name, class:'form-control' %>
+      </div>
+      <div class="field hidden">
+        <%= f.hidden_field :user_id, value: current_user.id %>
+      </div>
+      <div class="field">
+        <%= f.label :date, class:'required' %>
+        <%= f.date_select :date%>
+      </div>
+      <div class="field">
+        <%= f.label :time, class:'required' %>
+        <%= f.time_select :time%>
+      </div>
+      <div class="field">
+        <%= f.label :location, class:'required'  %>
+        <p>Please include a location with a city name, zipcode, and/or full address</p>
+        <p>ex: Morley Field, San Diego</p>
+        <%= f.text_field :location, class:'form-control' %>
+      </div>
+      <div class="field">
+        <%= f.label :category, class:'required'  %>
+        <%= f.select :category, [ 'Yoga','Swimming','Weight Training', 'Cross Fit', 'Cardio'], :prompt => 'Select One'%>
+      </div>
 
 
-    <div class="field">
-      <%= f.label :duration, class:'required'  %><br>
-      <%= f.select :duration, [ '30 Minutes','60 Minutes', '90 Minutes', '2+ Hours'], :prompt => 'Select One' %>
-    </div>
-    <div class="field">
-      <%= f.label :level, class:'required'  %><br>
-      <%= f.select :level, [ 'Beginner','Intermediate','Advanced'], :prompt => 'Select One' %>
-    </div>
-    <div class="field">
-      <%= f.label :description, class:'required'  %><br>
-      <p>Please include a specific decription for your class</p>
-      <p>ex: We will be meeting near the tennis courts at Morley Field. Please bring a yoga mat.</p>
-      <%= f.text_area :description, class:'form-control' %>
-    </div>
-    <div class="actions">
-      <%= f.submit "Create Workout", class:'btn btn-primary'%>
+      <div class="field">
+        <%= f.label :duration, class:'required'  %>
+        <%= f.select :duration, [ '30 Minutes','60 Minutes', '90 Minutes', '2+ Hours'], :prompt => 'Select One' %>
+      </div>
+      <div class="field">
+        <%= f.label :level, class:'required'  %>
+        <%= f.select :level, [ 'Beginner','Intermediate','Advanced'], :prompt => 'Select One' %>
+      </div>
+      <div class="field">
+        <%= f.label :description, class:'required'  %>
+        <p>Please include a specific decription for your class</p>
+        <p>ex: We will be meeting near the tennis courts at Morley Field. Please bring a yoga mat.</p>
+        <%= f.text_area :description, class:'form-control' %>
+      </div>
+      <div class="actions">
+        <%= f.submit "Create Workout", class:'btn btn-primary'%>
+      </div>
     </div>
   </div>
   <% end %>
