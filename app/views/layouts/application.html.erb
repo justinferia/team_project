@@ -60,10 +60,11 @@
               <%= link_to_if 1==2, image_tag(current_user.image.url), current_user.image.url%>
               <%end%>
             </li>
-            <li><a href="/users/edit">
+            <li><a href="/profiles/<%=current_user.id%>">
               Hello, <%= "#{current_user.name} ( #{current_user.roles.pluck(:name).join(", ") } )" %>
             </a>
           </li>
+          <li><a href="/users/edit">Edit</a></li>
           <%end%>
         </ul>
       </nav>
