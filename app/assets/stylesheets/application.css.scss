@@ -30,7 +30,14 @@
     background-repeat: no-repeat;
     background-size: cover;
 }
-
+// background for forms
+.form_background {
+    background-image: image-url("bridge_runner.jpg");
+    min-height: 500px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
 // navbar style
 #nav-icon > img {
   height: 50px;
@@ -47,7 +54,7 @@
 }
 
 .white {
-  color: white;
+  color: white !important;
 }
 
 // fonts
@@ -63,6 +70,32 @@
 @font-face {
   font-family: "Top";
   src: font-url("Top.ttf") format("truetype");
+}
+
+.varsity {
+  font-family: "varsity" !important;
+}
+
+@font-face {
+  font-family: "varsity";
+  src: font-url("varsity.ttf") format("truetype");
+}
+
+.quick {
+  font-family: "Quick" !important;
+}
+
+@font-face {
+  font-family: "quick";
+  src: font-url("Quick.otf") format("truetype");
+}
+
+.fc-event:hover {
+  background-color: #2A7496;
+}
+
+.navbar{
+  padding: 10px 0px;
 }
 
 .top {

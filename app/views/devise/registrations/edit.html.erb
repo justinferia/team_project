@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col-xs-1 col-md-4"></div>
   <div class="col-xs-10 col-md-4">
-    <h2 class="center top huge">Edit <%= resource_name.to_s.humanize %></h2>
+    <h2 class="center varsity huge">Edit <%= resource_name.to_s.humanize %></h2>
     <div class="move_right">
       <span class="glyphicon glyphicon-backward" aria-hidden="true"> </span> <%= link_to "Back", :back %>
     </div>
@@ -12,6 +12,7 @@
     <div class="row">
       <div class="col-md-12">
         <div class="well">
+          <h2 class="center varsity bigger">Update Your Profile</h2>
           <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, multipart: true }) do |f| %>
 
           <div class="field">
@@ -57,6 +58,7 @@
       <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, multipart: true }) do |f| %>
       <div class="col-lg-8">
         <div class="well">
+          <h2 class="center varsity bigger">Update Your Profile</h2>
           <div class="field">
             <%= f.label :first_name %><br />
             <%= f.text_field :first_name, autofocus: true, class: 'form-control' %>
@@ -110,6 +112,7 @@
       </div>
 
       <div class="col-lg-4 well">
+        <h2 class="center varsity bigger">Change Password</h2>
         <div class="field">
           <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
           <%= f.password_field :password, autocomplete: "off", class: 'form-control' %>

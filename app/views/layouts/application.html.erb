@@ -29,52 +29,50 @@
 
 </head>
 
-<body>
+<body class="quick">
+  <nav class="navbar navbar-dark bg-info quick">
+    <div class="navbar-header">
+      <a class="navbar-brand varsity biggest" href="/"><i class="fa fa-universal-access fa-lg" aria-hidden="true"></i> Winners Circle</a>
+    </div>
+    <ul class="nav navbar-nav quick">
 
-    <nav class="navbar navbar-inverse">
-      <div class="navbar-header">
-        <a class="navbar-brand octin" href="/">Winner's Circle</a>
-      </div>
-      <ul class="nav navbar-nav">
+      <li class="active"><a href="/"><i class="fa fa-home fa-lg" aria-hidden="true"></i></a></li>
+      <%if !current_user.nil?%>
+      <li><%= link_to destroy_user_session_path, :method => :delete do %>
+        <i class="fa fa-sign-out fa-lg" aria-hidden="true"></i>
+        Sign Out
+        <% end %>
+      </li>
+      <% end %>
+      <% if current_user.nil?%>
+      <li><a href="/users/sign_up"><i class="fa fa-user-plus fa-lg" aria-hidden="true"></i> Sign Up</a></li>
+      <li><a href="/users/sign_in"><i class="fa fa-sign-in fa-lg" aria-hidden="true"></i> Log in</a></li>
+      <li>
+        <%= link_to user_twitter_omniauth_authorize_path do %>
+        <i class="fa fa-twitter fa-lg" aria-hidden="true"></i>
+        Sign in with Twitter
+        <% end %>
+      </li>
+      <%end%>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <%if !current_user.nil?%>
+      <li id="nav-icon">
+        <%if !current_user.image_file_name.nil?%>
+        <%= link_to_if 1==2, image_tag(current_user.image.url), current_user.image.url%>
+        <%end%>
+      </li>
+      <li><a href="/profiles/<%=current_user.id%>" class="big quick">
+        Hello, <%= "#{current_user.name.upcase} ( #{current_user.roles.pluck(:name).join(", ") } )" %></a>
+      </li>
+      <li><a href="/users/edit"><i class="fa fa-pencil fa-2x" aria-hidden="true"></i></a></li>
+      <%end%>
+    </ul>
 
-        <li class="active"><a href="/"><i class="fa fa-home fa-lg" aria-hidden="true"></i></a></li>
-          <%if !current_user.nil?%>
-          <li><%= link_to destroy_user_session_path, :method => :delete do %>
-            <i class="fa fa-sign-out fa-lg" aria-hidden="true"></i>
-              Sign Out
-            <% end %>
-          </li>
-          <% end %>
-          <% if current_user.nil?%>
-          <li><a href="/users/sign_up"><i class="fa fa-user-plus fa-lg" aria-hidden="true"></i> Sign Up</a></li>
-          <li><a href="/users/sign_in"><i class="fa fa-sign-in fa-lg" aria-hidden="true"></i> Log in</a></li>
-            <li>
-              <%= link_to user_twitter_omniauth_authorize_path do %>
-              <i class="fa fa-twitter fa-lg" aria-hidden="true"></i>
-              Sign in with Twitter
-              <% end %>
-            </li>
-            <%end%>
-          </ul>
-          <ul class="nav navbar-nav navbar-right">
-            <%if !current_user.nil?%>
-            <li id="nav-icon">
-              <%if !current_user.image_file_name.nil?%>
-              <%= link_to_if 1==2, image_tag(current_user.image.url), current_user.image.url%>
-              <%end%>
-            </li>
-            <li><a href="/profiles/<%=current_user.id%>" class="octin">
-              Hello, <%= "#{current_user.name} ( #{current_user.roles.pluck(:name).join(", ") } )" %>
-            </a>
-          </li>
-          <li><a href="/users/edit"><i class="fa fa-pencil fa-lg" aria-hidden="true"></i></a></li>
-          <%end%>
-        </ul>
+  </nav>
+  <div class="container-fluid">
+    <%= yield %>
+  </div>
 
-      </nav>
-      <div class="container-fluid">
-      <%= yield %>
-      </div>
-
-  </body>
-  </html>
+</body>
+</html>
