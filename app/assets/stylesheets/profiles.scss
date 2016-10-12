@@ -39,14 +39,12 @@ table {
   width: 300px;
 }
 #wrapper {
-  background-image: url("background.jpg");
+  background-image: url("yogi.jpg");
   border: 1px hidden;
   margin-top: 50px;
   margin-bottom: 100px;
   height: 900px;
   background-size: cover;
-  margin-left: 220px;
-  margin-right: 220px;
 }
 // instructors profile page
 
@@ -55,4 +53,8 @@ table {
   width: 500px;
   height: 500px;
 
+}
+
+.white_background {
+  background-color: white;
 }

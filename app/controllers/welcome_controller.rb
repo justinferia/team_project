@@ -1,4 +1,6 @@
 class WelcomeController < ApplicationController
+  layout "runner_background"
+
   def index
     @workouts = Workout.all
     @pindrop = Gmaps4rails.build_markers(@workouts) do |workout, marker|
