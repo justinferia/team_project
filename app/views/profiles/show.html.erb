@@ -47,9 +47,11 @@
               <td><%= workout.location %></td>
               <td><%= workout.duration %></td>
               <td><%= workout.description %></td>
+              <%if !current_user.nil?%>
               <%if current_user.id == @user.id%>
               <td><%= link_to 'Edit', edit_workout_path(workout) %></td>
               <td><%= link_to 'Destroy', workout, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+              <%end%>
               <%end%>
             </tr>
             <% end %>
