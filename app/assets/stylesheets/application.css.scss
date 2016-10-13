@@ -57,6 +57,11 @@
   color: white !important;
 }
 
+.border_white {
+  border-color: white;
+  border-style: solid;
+}
+
 // fonts
 @font-face {
   font-family: "octin";
@@ -136,6 +141,11 @@
 }
 .huge_name{
   font-size: 4em !important;
+  line-height: 1.3em;
+}
+
+.huge_title {
+  font-size: 6em !important;
   line-height: 1.3em;
 }
 
