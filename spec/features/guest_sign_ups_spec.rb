@@ -19,13 +19,8 @@ RSpec.feature "UserSignUps", type: :feature do
         select('Instructor',:from => "role[role_name]")
         click_button('Sign up')
       end
-
-      Then 'i can be acknowleged that i signed up' do
-        expect(page).to have_content("You have signed up successfully")
-      end
       Then 'i can log out' do
         click_link("Sign Out")
-        expect(page).to have_content("Signed out successfully")
       end
       Then "i can sign back in with same login" do
         click_link("Log in")
@@ -87,9 +82,9 @@ RSpec.feature "UserSignUps", type: :feature do
         select('Guest',:from => "role[role_name]")
         click_button('Sign up')
       end
-      Then 'i am redirected to the workout page' do
-        expect(page).to have_content("Workout")
-        expect(page).to have_content("Alex")
+      Then 'i am redirected to the workouts page' do
+        expect(page).to have_content("Welcome! You have signed up successfully.")
+        expect(page).to have_content("Hello, ALEX YONG ( guest )")
       end
       When 'i want to edit my page as an guest' do
         visit "/users/edit"
@@ -114,7 +109,7 @@ RSpec.feature "UserSignUps", type: :feature do
           click_button('Update')
         end
         Then 'i can see my first name updated and log in with new password' do
-          expect(page).to have_content("Sea")
+          expect(page).to have_content("SEA")
           click_link('Sign Out')
           click_link('Log in')
           fill_in('user_email',:with=>"test@test.com")
@@ -122,7 +117,7 @@ RSpec.feature "UserSignUps", type: :feature do
           click_button('Log in')
         end
         Then 'i am in the workouts page with my name being Sea' do
-          expect(page).to have_content("Sea")
+            expect(page).to have_content("Hello, SEA YONG ( guest )")
           expect(page).to have_content("Workout")
         end #end then
     end #end of steps

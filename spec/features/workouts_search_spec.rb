@@ -13,8 +13,7 @@ RSpec.feature "Workouts", type: :feature do
         fill_in('user_password_confirmation',:with=>"password")
         select('Instructor',:from => "role[role_name]")
         click_button("Sign up")
-        expect(page).to have_content 'Welcome! You have signed up successfully'
-        click_link ('Sign Out')
+        click_link('Sign Out')
         log_in('test@test.com','password')
       end
       Then 'I can go to my profile page and upload a picture and fill out description & interests' do
@@ -26,7 +25,7 @@ RSpec.feature "Workouts", type: :feature do
         click_button('Update')
       end
       Then 'I can create another workout' do
-        click_link("Winner's Circle")
+        page.find_link('Winners Circle').click
         click_link('Calendar of Events')
         create_workout('Beach Yoga', '2018', 'January', '1', '00', '01', 'Huntington Beach', 'Yoga', '60 Minutes', 'Beginner', 'Yoga at the beach!')
       end

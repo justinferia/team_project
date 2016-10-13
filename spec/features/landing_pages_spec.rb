@@ -15,7 +15,7 @@ RSpec.feature "LandingPages", type: :feature do
       Then 'i can sign up and see hello [myname]' do
         click_link 'Sign Up'
         sign_up("test@test.com", "password", "Alex", "Yong")
-        expect(page).to have_content("Hello, Alex Yong ( guest )")
+        expect(page).to have_content("Hello, ALEX YONG ( guest )")
       end
       Then 'i can also see a map on the landing page' do
         visit '/'

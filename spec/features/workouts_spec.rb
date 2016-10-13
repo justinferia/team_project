@@ -2,7 +2,7 @@ require 'rails_helper'
 
 #testing for will and justins story. as a user, I can be able to go to a website to look for workouts that I can go to attend.
 # TODO: We use js:true because there is something wrong with capybara
-RSpec.feature "Workouts", js:true, type: :feature do
+RSpec.feature "Workouts", type: :feature do
   context 'going to the workout index' do
     Steps 'being welcomed' do
       Given 'on the workout index page' do
@@ -37,11 +37,9 @@ RSpec.feature "Workouts", js:true, type: :feature do
         fill_in('user_password_confirmation',:with=>"password")
         select('Instructor',:from => "role[role_name]")
         click_button('Sign up')
-        expect(page).to have_content 'Welcome! You have signed up successfully'
       end
       Then 'I can sign out' do
         click_link('Sign Out')
-        expect(page).to have_content 'Signed out successfully'
       end
       Then 'I can log in using the acc I previously made' do
         click_link('Log in')
@@ -53,7 +51,7 @@ RSpec.feature "Workouts", js:true, type: :feature do
       Then 'I can delete my acc' do
         visit '/users/edit'
         click_button('Cancel my account')
-        expect(page).to have_content 'Bye! Your account has been successfully cancelled. We hope to see you again soon.'
+        expect(page).to have_content 'Welcome to Winners Circle'
       end
     end
   end
@@ -73,7 +71,6 @@ RSpec.feature "Workouts", js:true, type: :feature do
         fill_in('user_password_confirmation',:with=>"password")
         select('Instructor',:from => "role[role_name]")
         click_button('Sign up')
-        expect(page).to have_content 'Welcome! You have signed up successfully'
       end
       Then 'I am taken to the edit page to add in my interests, fitness background, and a photo where I decided I do not want to upload information right now' do
         visit '/users/edit'
@@ -144,7 +141,7 @@ RSpec.feature "Workouts", js:true, type: :feature do
         expect(page).to have_content 'Swimming, Biking, and Running Training'
       end #end of then
       Then 'i can go to my profile to edit' do
-        click_link ('Edit Profile')
+        find(".fa-pencil").click
         fill_in('Name', :with => 'Triathlon training 101')
         click_button ('Create Workout')
       end
@@ -152,7 +149,7 @@ RSpec.feature "Workouts", js:true, type: :feature do
         expect(page).to have_content 'Triathlon training 101'
         expect(page).to have_content 'Workout was successfully updated'
       end
-    end #end of given
+    end#end of given
   end#end of story
 
  #testing for a guest when they sign up
@@ -199,10 +196,9 @@ RSpec.feature "Workouts", js:true, type: :feature do
         fill_in('user_password_confirmation',:with=>"password")
         select('Instructor',:from => "role[role_name]")
         click_button("Sign up")
-        expect(page).to have_content 'Welcome! You have signed up successfully'
-        click_link ('Sign Out')
+        click_link("Sign Out")
         log_in('test@test.com','password')
-        click_link('Hello, Remy Pickles ( instructor )')
+        click_link('Hello, REMY PICKLES ( instructor )')
         attach_file "user_image", File.join(Rails.root, "spec/assets/woman.png")
         fill_in('Interests', :with =>"coke")
         fill_in('Fitness background', :with =>"college sports")
