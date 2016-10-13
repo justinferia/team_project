@@ -1,9 +1,10 @@
 Rails.application.routes.draw do
 
-
   get 'profiles/index'
 
   get 'profiles/:id' => 'profiles#show'
+
+  get '/pages/about' => 'pages#show'
 
   devise_for :users, :controllers => { registrations: 'registrations', omniauth_callbacks: 'omniauth_callbacks'}
 
@@ -19,6 +20,8 @@ Rails.application.routes.draw do
   get '/workouts/search'
   get '/profiles/index'
 
+  get '/pages/about' => 'pages#show'
+
   resources :workouts do
     #this returns json in all cases
     get :get_workouts, on: :collection
@@ -32,6 +35,7 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
 
   root 'welcome#index'
+
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

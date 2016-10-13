@@ -36,17 +36,17 @@
     </div>
     <ul class="nav navbar-nav quick">
 
-      <li class="active"><a href="/"><i class="fa fa-home fa-lg" aria-hidden="true"></i></a></li>
+      <li class="active normal border_white"><a href="/pages/about"><i class="fa fa-book fa-lg" aria-hidden="true"></i> About</a></li>
       <%if !current_user.nil?%>
-      <li><%= link_to destroy_user_session_path, :method => :delete do %>
+      <li class="normal"><%= link_to destroy_user_session_path, :method => :delete do %>
         <i class="fa fa-sign-out fa-lg" aria-hidden="true"></i>
         Sign Out
         <% end %>
       </li>
       <% end %>
       <% if current_user.nil?%>
-      <li><a href="/users/sign_up"><i class="fa fa-user-plus fa-lg" aria-hidden="true"></i> Sign Up</a></li>
-      <li><a href="/users/sign_in"><i class="fa fa-sign-in fa-lg" aria-hidden="true"></i> Log in</a></li>
+      <li class="normal"><a href="/users/sign_up"><i class="fa fa-user-plus fa-lg" aria-hidden="true"></i> Sign Up</a></li>
+      <li class="normal"><a href="/users/sign_in"><i class="fa fa-sign-in fa-lg" aria-hidden="true"></i> Log in</a></li>
       <li>
         <%= link_to user_twitter_omniauth_authorize_path do %>
         <i class="fa fa-twitter fa-lg" aria-hidden="true"></i>

@@ -1,64 +1,62 @@
-
-<div class="container">
-  <div id="wrapper">
+<div id="wrapper">
   <div class="row">
     <div class="col-xs-1"></div>
     <div class="col-xs-10 capitalize">
-    <div class="instructor">
-  <h1 class="varsity huge text-center">Instructor Profile</h1>
-  <br/>
-      <% if !@user.image.url.nil? %>
-      <%=image_tag @user.image.url(:large) %>
-      <% end %>
-<br/>
-<br/>
-     <div id="name">
-      <p class="info quick"><strong>Name:</strong><br>
-        <%=@user.first_name + " " + @user.last_name%>
-      </p>
-      <p class="info quick"><strong>Interests:</strong><br>
-        <%=@user.interests%>
-      </p>
-      <p class="info quick"><strong>Fitness Background:</strong><br>
-        <%=@user.fitness_background%>
-      </p>
+      <div class="instructor">
+        <h1 class="varsity huge text-center">Instructor Profile</h1>
+        <br/>
+        <% if !@user.image.url.nil? %>
+        <%=image_tag @user.image.url(:large) %>
+        <% end %>
+        <br/>
+        <br/>
+        <div id="name">
+          <p class="info quick"><strong>Name:</strong><br>
+            <%=@user.first_name + " " + @user.last_name%>
+          </p>
+          <p class="info quick"><strong>Interests:</strong><br>
+            <%=@user.interests%>
+          </p>
+          <p class="info quick"><strong>Fitness Background:</strong><br>
+            <%=@user.fitness_background%>
+          </p>
+        </div>
+      </div>
     </div>
+    <div id="tableinfo">
+      <div class="col-md-12">
+        <h3 class="varsity huge">My Classes</h3>
+        <br/>
+        <div class="table-responsive text-center">
+          <table class="table table-striped table-inverse capitalize quick">
+            <tr>
+              <td class="quick"><strong>Class Name</strong></td>
+              <td class="quick"><strong>Date</strong></td>
+              <td class="quick"><strong>Time</strong></td>
+              <td class="quick"><strong>Location</strong></td>
+              <td class="quick"><strong>Duration</strong></td>
+              <td class="quick"><strong>Class Description</strong></td>
+              <td class="quick"><strong>Edit</strong></td>
+              <td class="quick"><strong>Destroy</strong></td>
+            </tr>
+            <% @workouts.each do |workout| %>
+            <tr class="white_background">
+              <td><%= workout.name %></td>
+              <td><%= workout.date.strftime("%m/%d/%y") %></td>
+              <td><%= workout.time.strftime('%r') %></td>
+              <td><%= workout.location %></td>
+              <td><%= workout.duration %></td>
+              <td><%= workout.description %></td>
+              <%if current_user.id == @user.id%>
+              <td><%= link_to 'Edit', edit_workout_path(workout) %></td>
+              <td><%= link_to 'Destroy', workout, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+              <%end%>
+            </tr>
+            <% end %>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="col-xs-1"></div>
   </div>
 </div>
-<div id="tableinfo">
-<div class="col-md-12">
-  <h3 class="varsity huge">My Classes</h3>
-  <br/>
-      <div class="table-responsive text-center">
-        <table class="table table-striped table-inverse capitalize quick">
-          <tr>
-            <td class="quick"><strong>Class Name</strong></td>
-            <td class="quick"><strong>Date</strong></td>
-            <td class="quick"><strong>Time</strong></td>
-            <td class="quick"><strong>Location</strong></td>
-            <td class="quick"><strong>Duration</strong></td>
-            <td class="quick"><strong>Class Description</strong></td>
-            <td class="quick"><strong>Edit</strong></td>
-            <td class="quick"><strong>Destroy</strong></td>
-           </tr>
-          <% @workouts.each do |workout| %>
-           <tr class="white_background">
-             <td><%= workout.name %></td>
-             <td><%= workout.date.strftime("%m/%d/%y") %></td>
-             <td><%= workout.time.strftime('%r') %></td>
-             <td><%= workout.location %></td>
-             <td><%= workout.duration %></td>
-             <td><%= workout.description %></td>
-             <%if current_user.id == @user.id%>
-             <td><%= link_to 'Edit', edit_workout_path(workout) %></td>
-             <td><%= link_to 'Destroy', workout, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-             <%end%>
-           </tr>
-          <% end %>
-         </table>
-       </div>
-      </div>
-     </div>
-     <div class="col-xs-1"></div>
-    </div>
-   </div>
