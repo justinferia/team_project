@@ -16,15 +16,15 @@ RSpec.feature "Twitter",js:true, type: :feature do
         click_button 'allow'
       end
       Then 'i have successfully signed in' do
-        expect(page).to have_content("Successfully authenticated from Twitter account.")
-        expect(page).to have_content("Hello, jon ( )")
+        expect(page).to have_content("Hello, JON ( )")
         click_link "Guest"
       end
       Then 'I should be in the workouts page' do
+        expect(page).to have_content("Successfully authenticated from Twitter account.")
         expect(page).to have_content("Workout Listings")
       end
       Then 'I go to edit page and see no param to input passwords' do
-        click_link "Edit"
+        find(".fa-pencil").click
         expect(page).to_not have_content("Password confirmation")
         expect(page).to_not have_content("Password")
         expect(page).to_not have_content("Current password")
@@ -40,7 +40,7 @@ RSpec.feature "Twitter",js:true, type: :feature do
       Then 'I can sign out and back in and see the changes I made were saved' do
         click_link('Sign Out')
         click_link("Sign in with Twitter")
-        expect(page).to have_content('Hello, jon snow ( guest )')
+        expect(page).to have_content('Hello, JON SNOW ( guest )')
       end
     end
   end

@@ -15,7 +15,6 @@ RSpec.feature "Workouts", type: :feature do
         fill_in('user_password_confirmation',:with=>"password")
         select('Instructor',:from => "role[role_name]")
         click_button('Sign up')
-        expect(page).to have_content 'Welcome! You have signed up successfully'
       end
       Then 'I have to enter my interests and fitness background' do
         fill_in('user_current_password',:with=>"password")
